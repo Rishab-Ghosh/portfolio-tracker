@@ -1,0 +1,20 @@
+{
+  "bull": {
+    "label": "Bull",
+    "whatHappens": "Urban robotaxi unit economics cross internal hurdles by year three; two additional major metros approve expanded driverless domains; personal-auto combined ratios inflect as frequency benefits appear in disclosed data.",
+    "whatConfirms": "Sequential permit expansion, rising autonomous passenger-mile share without sustained safety regressions, and insurer commentary acknowledging structural frequency improvement.",
+    "positionImpact": "Long AV compute and stack exposure benefits most; short personal-lines hedges work but require discipline on timing. Legacy OEM longs that lack fleet leverage underperform."
+  },
+  "base": {
+    "label": "Base",
+    "whatHappens": "Deployment proceeds in a stair-step pattern with periodic pauses after incidents; insurance and liability adjust slowly; ownership declines gradually in dense cities while suburbs lag.",
+    "whatConfirms": "Regulatory two-steps-forward-one-back pattern, mixed insurer results, and gradual residual pressure concentrated in urban segments.",
+    "positionImpact": "Thesis remains valid but path-dependent; position sizing favors liquid enablers over illiquid single-operator bets. Shorts require tight risk controls around earnings noise."
+  },
+  "bear": {
+    "label": "Bear",
+    "whatHappens": "A persistent safety or political backlash restricts domains; insurers retrench without clear frequency data; OEMs delay programs and consolidate spend on driver-assist only.",
+    "whatConfirms": "Permit revocations or moratoria, rising severity narratives, and capex cuts to L4 programs with no offsetting regulatory progress.",
+    "positionImpact": "AV pure-plays and aggressive longs are hurt; personal-auto insurers may mean-revert; cash-rich platforms with diversified revenue outperform narrow autonomy bets."
+  }
+}

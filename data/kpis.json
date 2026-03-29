@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Autonomous urban passenger-miles share",
+    "whyItMatters": "Direct read-through on whether thesis timing for city-first deployment is accurate.",
+    "statusPlaceholder": "Placeholder: tracking operator disclosures and third-party estimates (2026 Q1 baseline).",
+    "interpretation": "Rising share in target metros supports scale economics for fleet operators; stagnation suggests regulatory or unit-economics bottlenecks."
+  },
+  {
+    "name": "Accident frequency trends (ADS vs. human baseline)",
+    "whyItMatters": "Validates or challenges the safety narrative that underpins liability and insurance repricing.",
+    "statusPlaceholder": "Placeholder: awaiting annual NHTSA-aligned cohort update.",
+    "interpretation": "Improving ADS-relative frequency supports liability shift thesis; deterioration forces reassessment of deployment pace assumptions."
+  },
+  {
+    "name": "Insurer personal-auto loss ratio trajectory",
+    "whyItMatters": "Links technology outcomes to P&C earnings and reserve behavior.",
+    "statusPlaceholder": "Placeholder: next sector earnings cycle (mock).",
+    "interpretation": "Stable or worsening loss ratios alongside AV miles growth may indicate lagging pricing power or severity surprises."
+  },
+  {
+    "name": "Regulatory milestones (domains, permits, incidents)",
+    "whyItMatters": "Governance is often the binding constraint on urban scale.",
+    "statusPlaceholder": "Placeholder: internal checklist updated quarterly.",
+    "interpretation": "Net expansion of operating domains is bullish for deployment; high-profile incidents with restrictive responses are bearish."
+  },
+  {
+    "name": "Used passenger vehicle residual value curves",
+    "whyItMatters": "Proxy for ownership demand and fleet replacement incentives as utilization models shift.",
+    "statusPlaceholder": "Placeholder: Manheim / industry index snapshot (mock).",
+    "interpretation": "Structural softening in urban segments supports utilization-shift thesis; broad strength suggests ownership preference resilience."
+  },
+  {
+    "name": "Fleet utilization (miles per vehicle per day)",
+    "whyItMatters": "Unit economics for autonomous ride-hail hinge on utilization, not technology alone.",
+    "statusPlaceholder": "Placeholder: operator KPIs where disclosed (mock).",
+    "interpretation": "Sustained utilization growth without price destruction supports base case; utilization flat with discounting suggests oversupply."
+  }
+]

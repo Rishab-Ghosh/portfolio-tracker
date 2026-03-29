@@ -1,0 +1,25 @@
+{
+  "coreThesis": "Over the next five years, economically meaningful autonomous passenger mobility scales first in dense U.S. cities, compressing personal auto risk pools, reallocating liability, and reshaping fleet utilization and residual values. The path is uneven—regulation, insurance, and OEM economics will lag technology—but the direction of travel favors operators and enablers of supervised autonomy while pressuring legacy personal-auto exposure.",
+  "drivers": [
+    {
+      "title": "AV adoption in major U.S. cities",
+      "detail": "Measured growth in permitted robotaxi/ride-hail miles and share of urban passenger trips served by supervised or driverless fleets."
+    },
+    {
+      "title": "Reduced accident frequency",
+      "detail": "Directional improvement in per-mile collision rates where ADS data is available, and insurer commentary on bodily injury severity trends."
+    },
+    {
+      "title": "Regulatory support for autonomous fleets",
+      "detail": "State and municipal frameworks that expand operating domains, reduce friction for fleet deployment, and clarify testing-to-commercial pathways."
+    },
+    {
+      "title": "Liability shifting away from individual drivers",
+      "detail": "Court outcomes, policy language, and OEM/fleet indemnification structures that move accident cost toward manufacturers and fleet operators."
+    },
+    {
+      "title": "Ownership and utilization economics",
+      "detail": "Fleet utilization, total cost per mile, and used-vehicle residual curves as miles shift from owned vehicles to on-demand autonomous supply."
+    }
+  ]
+}

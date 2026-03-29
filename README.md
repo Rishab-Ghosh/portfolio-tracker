@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Live Thesis Tracker
 
-## Getting Started
+A minimal, finance-style **Next.js** companion page for a five-year investment thesis on the U.S. transition to autonomous vehicles. It presents the thesis, positions, KPIs, scenarios, a dated journal, and explicit falsification conditions—intended to read like an investor’s monitoring memo, not a trading toy.
 
-First, run the development server:
+- **Stack:** Next.js (App Router), TypeScript, Tailwind CSS v4  
+- **Data:** JSON files under `data/` (no database or APIs)  
+- **Deploy:** Ready for [Vercel](https://vercel.com) (default Next.js preset)
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). Production build:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Edit thesis content
 
-## Learn More
+All copy and structured content lives in **`data/`**:
 
-To learn more about Next.js, take a look at the following resources:
+| File | Purpose |
+|------|---------|
+| `site.json` | Page title, subtitle, intro paragraph |
+| `thesis.json` | Core thesis paragraph and driver bullets |
+| `positions.json` | Securities table (ticker, side, prices, status, summary) |
+| `kpis.json` | KPI monitor rows |
+| `scenarios.json` | Bull / base / bear columns |
+| `journal.json` | Dated thesis journal entries (newest-first on the page) |
+| `falsification.json` | “What would prove me wrong” items |
+| `footer.json` | Footer line, GitHub URL, disclaimer |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+After editing JSON, save the file; the dev server will hot-reload. `status` on positions must be one of: `tracking`, `validated`, `under review`, `broken`. `side` is `long` or `short`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**GitHub link:** set `githubUrl` in `data/footer.json` to your repository.
 
-## Deploy on Vercel
+## UI structure (code)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **`src/app/page.tsx`** — Composes sections; imports JSON via the `@data/*` alias.
+- **`src/components/`** — Reusable section shells and blocks (`Section`, `Hero`, `PositionTracker`, etc.).
+- **`src/types/data.ts`** — TypeScript shapes aligned with the JSON (for reference and consistency).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deploy to Vercel
+
+1. Push this project to a GitHub repository.
+2. In Vercel: **Add New Project** → import the repo.
+3. Framework preset **Next.js**, root directory the repo root, build command `npm run build`, output default.
+4. Deploy. No environment variables are required for the static JSON setup.
+
+## Disclaimer
+
+This repository is a **monitoring and presentation framework** only. It is not investment advice.

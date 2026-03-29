@@ -1,0 +1,46 @@
+[
+  {
+    "name": "NVIDIA Corporation",
+    "ticker": "NVDA",
+    "side": "long",
+    "category": "AV compute / simulation",
+    "entryDate": "2024-09-12",
+    "entryPrice": 116.5,
+    "currentPrice": 142.8,
+    "thesisSummary": "Training and in-vehicle inference demand scale with fleet software iteration; simulation and validation workloads compound as OEMs and operators expand domains.",
+    "status": "validated"
+  },
+  {
+    "name": "Mobileye Global Inc.",
+    "ticker": "MBLY",
+    "side": "long",
+    "category": "ADAS / autonomy stack",
+    "entryDate": "2024-11-03",
+    "entryPrice": 17.2,
+    "currentPrice": 19.4,
+    "thesisSummary": "Supervised autonomy and REM map economics improve as regulatory clarity and OEM roadmap credibility rise; content per vehicle increases through L2++ rollouts.",
+    "status": "tracking"
+  },
+  {
+    "name": "Allstate Corporation",
+    "ticker": "ALL",
+    "side": "short",
+    "category": "Personal lines P&C",
+    "entryDate": "2025-01-15",
+    "entryPrice": 168.4,
+    "currentPrice": 172.1,
+    "thesisSummary": "Personal auto combined ratio pressure as frequency benefits lag severity and reserve noise; thesis predicated on gradual, not sudden, repricing of driver risk.",
+    "status": "under review"
+  },
+  {
+    "name": "Ford Motor Company",
+    "ticker": "F",
+    "side": "long",
+    "category": "Legacy OEM transition",
+    "entryDate": "2024-06-20",
+    "entryPrice": 12.05,
+    "currentPrice": 10.88,
+    "thesisSummary": "Underestimated cyclical and margin drag versus pure-play AV beneficiaries; legacy transformation slower to monetize than fleet-first operators.",
+    "status": "broken"
+  }
+]
