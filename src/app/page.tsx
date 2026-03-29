@@ -72,7 +72,12 @@ export default function Home() {
           <ThesisOverview thesis={thesisData} />
         </Section>
 
-        <Section id="positions" eyebrow="II" title="Live position monitor">
+        <Section
+          id="positions"
+          eyebrow="II"
+          title="Position monitor"
+          lead={siteData.leadPositions}
+        >
           <PositionMonitor
             positions={positionsData}
             benchmarkLabel={marketData.benchmarkTicker}
@@ -84,7 +89,7 @@ export default function Home() {
           <ScenarioFramework scenarios={scenariosData} />
         </Section>
 
-        <Section id="kpis" eyebrow="IV" title="KPI monitor">
+        <Section id="kpis" eyebrow="IV" title="KPI monitor" lead={siteData.leadKpis}>
           <KPIMonitor kpis={kpisData} />
         </Section>
 

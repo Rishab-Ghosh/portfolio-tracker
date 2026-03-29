@@ -70,8 +70,8 @@ See `.env.example`.
 
 | File | What to change |
 |------|----------------|
-| `data/site.json` | Title, subtitle (“Investment Monitoring Dashboard”), intro, **launched** date, **thesisActive** badge |
-| `data/thesis.json` | Core thesis, **drivers**, **winners**, **losers**, **whyMatters** |
+| `data/site.json` | Title, subtitle, intro (thesis-first framing), **launched**, **thesisActive**, **leadPositions** / **leadKpis** (section blurbs) |
+| `data/thesis.json` | **oneLine** (thesis anchor), **coreThesis**, **drivers**, **winners** / **losers**, **whyMatters** |
 | `data/positions.json` | Sleeves, entry date/price, **offlineQuote** (fallback), thesis line, **status** (`tracking` / `validated` / `under review` / `broken`) |
 | `data/market.json` | **benchmarkTicker** (e.g. `SPY`), **pollIntervalSeconds** (60–300) |
 | `data/scenarios.json` | Upside / base / downside: description, confirming signals, implications, who benefits / hurt, **monitorStatus** |

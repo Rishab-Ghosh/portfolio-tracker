@@ -3,6 +3,15 @@ import type { ThesisData } from "@/types/data";
 export function ThesisOverview({ thesis }: { thesis: ThesisData }) {
   return (
     <div className="space-y-12">
+      <div className="border-l-2 border-l-zinc-900 pl-4 sm:pl-5">
+        <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-zinc-500">
+          In one line
+        </p>
+        <p className="mt-2 max-w-3xl text-[15px] font-medium leading-snug text-zinc-900">
+          {thesis.oneLine}
+        </p>
+      </div>
+
       <p className="max-w-3xl text-[15px] leading-[1.7] text-zinc-800">{thesis.coreThesis}</p>
 
       <div>
@@ -20,7 +29,7 @@ export function ThesisOverview({ thesis }: { thesis: ThesisData }) {
       <div className="grid gap-8 border-t border-zinc-200 pt-10 sm:grid-cols-2">
         <div>
           <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-zinc-500">
-            Working expressions (winners)
+            Expressions that fit the thesis
           </p>
           <ul className="mt-3 list-inside list-disc text-[13px] leading-relaxed text-zinc-700">
             {thesis.winners.map((w) => (
@@ -32,7 +41,7 @@ export function ThesisOverview({ thesis }: { thesis: ThesisData }) {
         </div>
         <div>
           <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-zinc-500">
-            Stress / losers
+            Stress tests / contradictions
           </p>
           <ul className="mt-3 list-inside list-disc text-[13px] leading-relaxed text-zinc-700">
             {thesis.losers.map((l) => (

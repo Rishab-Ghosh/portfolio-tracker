@@ -4,6 +4,8 @@ export interface ThesisDriver {
 }
 
 export interface ThesisData {
+  /** Single-sentence anchor; edit in data/thesis.json */
+  oneLine: string;
   coreThesis: string;
   drivers: ThesisDriver[];
   winners: string[];
@@ -88,4 +90,8 @@ export interface SiteMeta {
   intro: string;
   launched: string;
   thesisActive: boolean;
+  /** Section II — thesis expressions first; market data second */
+  leadPositions: string;
+  /** Section IV — non-price evidence */
+  leadKpis: string;
 }

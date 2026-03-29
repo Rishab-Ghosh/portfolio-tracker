@@ -40,7 +40,7 @@ type QuotesResponse = {
   rows: RowMetrics[];
 };
 
-function mergeRows(rows: RowMetrics[] | null): Map<string, RowMetrics> {
+function rowMapFrom(rows: RowMetrics[] | null): Map<string, RowMetrics> {
   const m = new Map<string, RowMetrics>();
   if (!rows) return m;
   for (const r of rows) m.set(r.ticker.toUpperCase(), r);
@@ -80,11 +80,11 @@ export function PositionMonitor({
     return () => clearInterval(id);
   }, [fetchQuotes, pollIntervalMs]);
 
-  const rowMap = useMemo(() => mergeRows(data?.rows ?? null), [data?.rows]);
+  const rowMap = useMemo(() => rowMapFrom(data?.rows ?? null), [data?.rows]);
 
   const statusLine = useMemo(() => {
-    if (loading && !data) return "Loading quotes…";
-    if (!data) return clientError ?? "Quotes unavailable";
+    if (loading && !data) return "Fetching marks…";
+    if (!data) return clientError ?? "Marks unavailable";
     const t = new Date(data.updatedAt).toLocaleString("en-US", {
       month: "short",
       day: "numeric",
@@ -92,7 +92,7 @@ export function PositionMonitor({
       hour: "2-digit",
       minute: "2-digit",
     });
-    const parts = [`Last update ${t}`];
+    const parts = [`Marks as of ${t}`];
     if (!data.ok && data.error) parts.push(data.error);
     return parts.join(" · ");
   }, [loading, data, clientError]);
@@ -110,16 +110,26 @@ export function PositionMonitor({
                 <th className="px-3 py-3 font-mono font-normal">Ticker</th>
                 <th className="px-3 py-3 font-normal">Side</th>
                 <th className="px-3 py-3 font-normal">Sleeve</th>
-                <th className="px-3 py-3 font-normal whitespace-nowrap">Opened</th>
-                <th className="px-3 py-3 text-right font-mono font-normal tabular-nums">Entry px</th>
-                <th className="px-3 py-3 text-right font-mono font-normal tabular-nums">Last px</th>
-                <th className="px-3 py-3 text-right font-mono font-normal tabular-nums">Δ vs entry</th>
-                <th className="px-3 py-3 text-right font-mono font-normal tabular-nums">Return</th>
-                <th className="px-3 py-3 text-right font-mono font-normal tabular-nums">
+                <th className="px-3 py-3 font-normal">State</th>
+                <th className="px-4 py-3 font-normal">Thesis</th>
+                <th className="border-l border-zinc-200 px-3 py-3 font-normal whitespace-nowrap text-zinc-500">
+                  Opened
+                </th>
+                <th className="px-3 py-3 text-right font-mono font-normal tabular-nums text-zinc-500">
+                  Entry
+                </th>
+                <th className="px-3 py-3 text-right font-mono font-normal tabular-nums text-zinc-500">
+                  Last
+                </th>
+                <th className="px-3 py-3 text-right font-mono font-normal tabular-nums text-zinc-500">
+                  Δ
+                </th>
+                <th className="px-3 py-3 text-right font-mono font-normal tabular-nums text-zinc-500">
+                  Since open
+                </th>
+                <th className="px-3 py-3 pr-4 text-right font-mono font-normal tabular-nums text-zinc-500">
                   vs {benchmarkLabel}
                 </th>
-                <th className="px-3 py-3 font-normal">State</th>
-                <th className="px-4 py-3 font-normal">View</th>
               </tr>
             </thead>
             <tbody>
@@ -141,7 +151,13 @@ export function PositionMonitor({
                     <td className="px-3 py-4 font-mono text-[12px] text-zinc-600">{p.ticker}</td>
                     <td className="px-3 py-4 capitalize text-zinc-700">{p.side}</td>
                     <td className="px-3 py-4 text-zinc-600">{p.category}</td>
-                    <td className="px-3 py-4 whitespace-nowrap text-zinc-600 tabular-nums">
+                    <td className="px-3 py-4 align-middle">
+                      <StatusBadge status={p.status} />
+                    </td>
+                    <td className="max-w-[19rem] px-4 py-4 text-[13px] leading-[1.55] text-zinc-600">
+                      {p.thesisSummary}
+                    </td>
+                    <td className="border-l border-zinc-100 px-3 py-4 whitespace-nowrap text-zinc-600 tabular-nums">
                       {formatDate(p.entryDate)}
                     </td>
                     <td className="px-3 py-4 text-right font-mono text-[12px] text-zinc-800 tabular-nums">
@@ -157,28 +173,14 @@ export function PositionMonitor({
                         {priceLabel}
                       </span>
                     </td>
-                    <td
-                      className={`px-3 py-4 text-right font-mono text-[12px] tabular-nums ${
-                        r?.absChange != null && r.absChange > 0
-                          ? "text-zinc-900"
-                          : r?.absChange != null && r.absChange < 0
-                            ? "text-zinc-500"
-                            : "text-zinc-600"
-                      }`}
-                    >
+                    <td className="px-3 py-4 text-right font-mono text-[12px] text-zinc-700 tabular-nums">
                       {fmtDelta(r?.absChange ?? null)}
                     </td>
-                    <td className="px-3 py-4 text-right font-mono text-[12px] text-zinc-800 tabular-nums">
+                    <td className="px-3 py-4 text-right font-mono text-[12px] text-zinc-700 tabular-nums">
                       {fmtPct(r?.pctReturn ?? null)}
                     </td>
-                    <td className="px-3 py-4 text-right font-mono text-[12px] text-zinc-800 tabular-nums">
+                    <td className="px-3 py-4 pr-4 text-right font-mono text-[12px] text-zinc-700 tabular-nums">
                       {fmtPct(r?.excessVsSpyPct ?? null)}
-                    </td>
-                    <td className="px-3 py-4 align-middle">
-                      <StatusBadge status={p.status} />
-                    </td>
-                    <td className="max-w-[20rem] px-4 py-4 text-[13px] leading-[1.55] text-zinc-600">
-                      {p.thesisSummary}
                     </td>
                   </tr>
                 );
@@ -187,10 +189,9 @@ export function PositionMonitor({
           </table>
         </div>
         <p className="px-1 text-[11px] leading-relaxed text-zinc-500">
-          Last prices via Finnhub (server-side). “vs {benchmarkLabel}” is return since open less{" "}
-          {benchmarkLabel} total return over the same window. Offline uses{" "}
-          <span className="font-mono">offlineQuote</span> in{" "}
-          <span className="font-mono">data/positions.json</span> when the API fails or a key is missing.
+          Server-side Finnhub; fallback <span className="font-mono">offlineQuote</span> in{" "}
+          <span className="font-mono">data/positions.json</span>. “vs {benchmarkLabel}”: simple
+          excess vs benchmark over the same window since open—not a formal alpha estimate.
         </p>
       </div>
 
@@ -210,10 +211,11 @@ export function PositionMonitor({
                 </div>
                 <StatusBadge status={p.status} />
               </div>
+              <p className="mt-4 text-[13px] leading-[1.55] text-zinc-700">{p.thesisSummary}</p>
               <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 border-t border-zinc-100 pt-4 text-[13px]">
-                <div>
+                <div className="col-span-2">
                   <dt className="text-[10px] font-medium uppercase tracking-[0.1em] text-zinc-500">
-                    Side / sleeve
+                    Side · sleeve
                   </dt>
                   <dd className="mt-0.5 capitalize text-zinc-800">
                     {p.side} · {p.category}
@@ -225,7 +227,7 @@ export function PositionMonitor({
                   </dt>
                   <dd className="mt-0.5 tabular-nums text-zinc-700">{formatDate(p.entryDate)}</dd>
                 </div>
-                <div className="col-span-2">
+                <div>
                   <dt className="text-[10px] font-medium uppercase tracking-[0.1em] text-zinc-500">
                     Entry · last
                   </dt>
@@ -238,7 +240,7 @@ export function PositionMonitor({
                 </div>
                 <div>
                   <dt className="text-[10px] font-medium uppercase tracking-[0.1em] text-zinc-500">
-                    Return
+                    Since open
                   </dt>
                   <dd className="mt-0.5 font-mono text-zinc-800">{fmtPct(r?.pctReturn ?? null)}</dd>
                 </div>
@@ -251,9 +253,6 @@ export function PositionMonitor({
                   </dd>
                 </div>
               </dl>
-              <p className="mt-4 border-t border-zinc-100 pt-4 text-[13px] leading-[1.55] text-zinc-600">
-                {p.thesisSummary}
-              </p>
             </li>
           );
         })}
