@@ -18,95 +18,112 @@ function formatDate(iso: string) {
 
 export function PositionTracker({ positions }: { positions: Position[] }) {
   return (
-    <>
+    <div className="space-y-3">
       <div className="hidden overflow-x-auto lg:block">
-        <table className="w-full min-w-[56rem] border-collapse text-left text-sm">
-          <thead>
-            <tr className="border-b border-zinc-200 text-xs font-medium uppercase tracking-wide text-zinc-500">
-              <th className="pb-3 pr-4 font-medium">Security</th>
-              <th className="pb-3 pr-4 font-medium">Side</th>
-              <th className="pb-3 pr-4 font-medium">Category</th>
-              <th className="pb-3 pr-4 font-medium">Entry</th>
-              <th className="pb-3 pr-4 font-medium text-right">Entry px</th>
-              <th className="pb-3 pr-4 font-medium text-right">Current px</th>
-              <th className="pb-3 pr-4 font-medium">Status</th>
-              <th className="pb-3 font-medium">Thesis</th>
-            </tr>
-          </thead>
-          <tbody>
-            {positions.map((p) => (
-              <tr
-                key={`${p.ticker}-${p.entryDate}`}
-                className="border-b border-zinc-100 align-top text-zinc-800"
-              >
-                <td className="py-4 pr-4">
-                  <div className="font-medium text-zinc-900">{p.name}</div>
-                  <div className="font-mono text-xs text-zinc-500">{p.ticker}</div>
-                </td>
-                <td className="py-4 pr-4 capitalize">{p.side}</td>
-                <td className="py-4 pr-4 text-zinc-600">{p.category}</td>
-                <td className="py-4 pr-4 whitespace-nowrap text-zinc-600">
-                  {formatDate(p.entryDate)}
-                </td>
-                <td className="py-4 pr-4 text-right font-mono text-zinc-700">
-                  {money.format(p.entryPrice)}
-                </td>
-                <td className="py-4 pr-4 text-right font-mono text-zinc-700">
-                  {money.format(p.currentPrice)}
-                  <span className="ml-1 text-xs font-sans text-zinc-400">(mock)</span>
-                </td>
-                <td className="py-4 pr-4">
-                  <StatusBadge status={p.status} />
-                </td>
-                <td className="py-4 max-w-md text-zinc-600 leading-relaxed">
-                  {p.thesisSummary}
-                </td>
+        <div className="border border-zinc-200 bg-white">
+          <table className="w-full min-w-[58rem] border-collapse text-left text-[13px]">
+            <thead>
+              <tr className="border-b border-zinc-200 bg-zinc-100/80 text-[11px] text-zinc-600">
+                <th className="px-4 py-3 font-normal">Name</th>
+                <th className="px-3 py-3 font-mono font-normal">Ticker</th>
+                <th className="px-3 py-3 font-normal">Side</th>
+                <th className="px-3 py-3 font-normal">Sleeve</th>
+                <th className="px-3 py-3 font-normal whitespace-nowrap">Opened</th>
+                <th className="px-3 py-3 text-right font-mono font-normal tabular-nums">
+                  Entry px
+                </th>
+                <th className="px-3 py-3 text-right font-mono font-normal tabular-nums">
+                  Last px
+                </th>
+                <th className="px-3 py-3 font-normal">State</th>
+                <th className="px-4 py-3 font-normal">View</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {positions.map((p) => (
+                <tr
+                  key={`${p.ticker}-${p.entryDate}`}
+                  className="border-b border-zinc-100 align-top text-zinc-800 last:border-b-0"
+                >
+                  <td className="px-4 py-4 font-medium text-zinc-900">{p.name}</td>
+                  <td className="px-3 py-4 font-mono text-[12px] text-zinc-600">{p.ticker}</td>
+                  <td className="px-3 py-4 capitalize text-zinc-700">{p.side}</td>
+                  <td className="px-3 py-4 text-zinc-600">{p.category}</td>
+                  <td className="px-3 py-4 whitespace-nowrap text-zinc-600 tabular-nums">
+                    {formatDate(p.entryDate)}
+                  </td>
+                  <td className="px-3 py-4 text-right font-mono text-[12px] text-zinc-800 tabular-nums">
+                    {money.format(p.entryPrice)}
+                  </td>
+                  <td className="px-3 py-4 text-right font-mono text-[12px] text-zinc-800 tabular-nums">
+                    {money.format(p.currentPrice)}
+                  </td>
+                  <td className="px-3 py-4 align-middle">
+                    <StatusBadge status={p.status} />
+                  </td>
+                  <td className="max-w-[22rem] px-4 py-4 text-[13px] leading-[1.55] text-zinc-600">
+                    {p.thesisSummary}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="px-1 text-[11px] leading-relaxed text-zinc-500">
+          Last prices are illustrative for layout; replace in <span className="font-mono">data/positions.json</span> or wire a feed when available.
+        </p>
       </div>
 
-      <ul className="grid gap-4 lg:hidden">
+      <ul className="space-y-3 lg:hidden">
         {positions.map((p) => (
           <li
             key={`${p.ticker}-${p.entryDate}-m`}
-            className="rounded-lg border border-zinc-200/90 bg-white p-4 shadow-sm shadow-zinc-950/5"
+            className="border border-zinc-200 bg-white px-4 py-5 sm:px-5"
           >
-            <div className="flex flex-wrap items-start justify-between gap-2">
+            <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
-                <div className="font-medium text-zinc-900">{p.name}</div>
-                <div className="font-mono text-sm text-zinc-500">{p.ticker}</div>
+                <div className="text-[15px] font-medium text-zinc-900">{p.name}</div>
+                <div className="mt-0.5 font-mono text-xs text-zinc-500">{p.ticker}</div>
               </div>
               <StatusBadge status={p.status} />
             </div>
-            <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+            <dl className="mt-5 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-zinc-100 pt-4 text-[13px]">
               <div>
-                <dt className="text-xs uppercase tracking-wide text-zinc-500">Side</dt>
-                <dd className="capitalize text-zinc-800">{p.side}</dd>
+                <dt className="text-[10px] font-medium uppercase tracking-[0.1em] text-zinc-500">
+                  Side
+                </dt>
+                <dd className="mt-0.5 capitalize text-zinc-800">{p.side}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-zinc-500">Category</dt>
-                <dd className="text-zinc-700">{p.category}</dd>
+                <dt className="text-[10px] font-medium uppercase tracking-[0.1em] text-zinc-500">
+                  Sleeve
+                </dt>
+                <dd className="mt-0.5 text-zinc-700">{p.category}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-zinc-500">Entry date</dt>
-                <dd className="text-zinc-700">{formatDate(p.entryDate)}</dd>
+                <dt className="text-[10px] font-medium uppercase tracking-[0.1em] text-zinc-500">
+                  Entry
+                </dt>
+                <dd className="mt-0.5 tabular-nums text-zinc-700">{formatDate(p.entryDate)}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-zinc-500">Prices</dt>
-                <dd className="font-mono text-zinc-800">
-                  {money.format(p.entryPrice)} → {money.format(p.currentPrice)}
-                  <span className="block text-xs font-sans font-normal text-zinc-400">
-                    current is mock
-                  </span>
+                <dt className="text-[10px] font-medium uppercase tracking-[0.1em] text-zinc-500">
+                  Entry / last
+                </dt>
+                <dd className="mt-0.5 font-mono text-xs text-zinc-800 tabular-nums">
+                  {money.format(p.entryPrice)} · {money.format(p.currentPrice)}
                 </dd>
               </div>
             </dl>
-            <p className="mt-4 text-sm leading-relaxed text-zinc-600">{p.thesisSummary}</p>
+            <p className="mt-4 border-t border-zinc-100 pt-4 text-[13px] leading-[1.55] text-zinc-600">
+              {p.thesisSummary}
+            </p>
           </li>
         ))}
       </ul>
-    </>
+      <p className="px-1 text-[11px] leading-relaxed text-zinc-500 lg:hidden">
+        Last prices illustrative—update in <span className="font-mono">data/positions.json</span>.
+      </p>
+    </div>
   );
 }

@@ -1,38 +1,38 @@
 [
   {
     "name": "Autonomous urban passenger-miles share",
-    "whyItMatters": "Direct read-through on whether thesis timing for city-first deployment is accurate.",
-    "statusPlaceholder": "Placeholder: tracking operator disclosures and third-party estimates (2026 Q1 baseline).",
-    "interpretation": "Rising share in target metros supports scale economics for fleet operators; stagnation suggests regulatory or unit-economics bottlenecks."
+    "whyItMatters": "Tests whether city-first deployment timing in the thesis is directionally right.",
+    "statusPlaceholder": "Internal log: operator filings and third-party mile estimates; baseline to be set each quarter.",
+    "interpretation": "Faster share gain in target metros is consistent with operator scale economics; flat or declining share after permit expansion points to unit-economics or execution constraints rather than regulation alone."
   },
   {
-    "name": "Accident frequency trends (ADS vs. human baseline)",
-    "whyItMatters": "Validates or challenges the safety narrative that underpins liability and insurance repricing.",
-    "statusPlaceholder": "Placeholder: awaiting annual NHTSA-aligned cohort update.",
-    "interpretation": "Improving ADS-relative frequency supports liability shift thesis; deterioration forces reassessment of deployment pace assumptions."
+    "name": "Accident frequency — ADS vs. human baseline",
+    "whyItMatters": "Underpins whether liability and insurance assumptions in the thesis are grounded.",
+    "statusPlaceholder": "Awaiting comparable cohort update; no single public series is sufficient—use multiple sources.",
+    "interpretation": "Persistent ADS disadvantage on like-for-like exposure would extend adoption and liability timelines; convergence or superiority supports faster pool repricing."
   },
   {
-    "name": "Insurer personal-auto loss ratio trajectory",
-    "whyItMatters": "Links technology outcomes to P&C earnings and reserve behavior.",
-    "statusPlaceholder": "Placeholder: next sector earnings cycle (mock).",
-    "interpretation": "Stable or worsening loss ratios alongside AV miles growth may indicate lagging pricing power or severity surprises."
+    "name": "Personal-auto combined ratio trajectory",
+    "whyItMatters": "Maps technology and loss-cost trends to P&C earnings and reserve behavior.",
+    "statusPlaceholder": "Tracked at each sector earnings round; weather and severity noise require multi-period view.",
+    "interpretation": "Structural improvement without a plausible frequency story while AV miles rise would weaken the short-auto-exposure leg; sustained pressure with rising miles is consistent with the thesis."
   },
   {
-    "name": "Regulatory milestones (domains, permits, incidents)",
-    "whyItMatters": "Governance is often the binding constraint on urban scale.",
-    "statusPlaceholder": "Placeholder: internal checklist updated quarterly.",
-    "interpretation": "Net expansion of operating domains is bullish for deployment; high-profile incidents with restrictive responses are bearish."
+    "name": "Regulatory milestones",
+    "whyItMatters": "Governance often caps domain before engineering does.",
+    "statusPlaceholder": "Internal checklist: permits, expansions, suspensions, incident responses.",
+    "interpretation": "Net wider domains and shorter recovery times after incidents support deployment; repeated retrenchment or moratoria invalidates a linear scaling assumption."
   },
   {
-    "name": "Used passenger vehicle residual value curves",
-    "whyItMatters": "Proxy for ownership demand and fleet replacement incentives as utilization models shift.",
-    "statusPlaceholder": "Placeholder: Manheim / industry index snapshot (mock).",
-    "interpretation": "Structural softening in urban segments supports utilization-shift thesis; broad strength suggests ownership preference resilience."
+    "name": "Used passenger vehicle residuals",
+    "whyItMatters": "Proxy for ownership demand and replacement behavior as utilization models shift.",
+    "statusPlaceholder": "Wholesale index and segment splits; urban vs. national divergence is the focus.",
+    "interpretation": "Sustained softness in relevant segments is consistent with utilization shift; broad strength would require revisiting how fast ownership erodes in target cities."
   },
   {
-    "name": "Fleet utilization (miles per vehicle per day)",
-    "whyItMatters": "Unit economics for autonomous ride-hail hinge on utilization, not technology alone.",
-    "statusPlaceholder": "Placeholder: operator KPIs where disclosed (mock).",
-    "interpretation": "Sustained utilization growth without price destruction supports base case; utilization flat with discounting suggests oversupply."
+    "name": "Fleet utilization",
+    "whyItMatters": "Autonomous ride-hail economics are utilization-first.",
+    "statusPlaceholder": "Operator disclosures where available; otherwise inferred from trip and fleet count proxies.",
+    "interpretation": "Rising utilization without destructive pricing supports the base path; flat utilization with rising discounts points to oversupply or weak demand."
   }
 ]

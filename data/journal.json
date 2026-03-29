@@ -1,30 +1,30 @@
 [
   {
     "date": "2026-03-15",
-    "title": "Operator domain expansion in second metro",
-    "whatChanged": "A major robotaxi operator announced expanded nighttime operations in a second U.S. city, with reference to improved remote-assistance protocols.",
-    "implication": "Supports base-to-bull path on regulatory learning curves and operational maturity, with emphasis on repeatable playbooks rather than one-off pilots.",
-    "action": "No change to position sizes; increase weight on regulatory milestone KPI in quarterly review."
+    "title": "Second-metro domain expansion",
+    "whatChanged": "Major operator widened nighttime service in a second U.S. city; cited remote-assistance and incident-response changes.",
+    "implication": "Consistent with regulatory learning and repeatable expansion rather than one-city exception.",
+    "action": "No size change; regulatory KPI weighted higher in next quarterly review."
   },
   {
     "date": "2026-02-02",
-    "title": "Insurer earnings: mixed loss-ratio commentary",
-    "whatChanged": "Large personal-auto writers cited weather and severity noise; few cited structural frequency improvement from ADS exposure in the pool.",
-    "implication": "Short personal-lines thesis remains early; risk of false negatives around timing. Thesis intact but requires smaller sizing until data coheres.",
-    "action": "Mark short exposure under review; tighten stop framework on next two prints."
+    "title": "Personal-auto carriers: loss-ratio noise",
+    "whatChanged": "Large writers emphasized weather and severity; limited reference to pool frequency or ADS-linked exposure.",
+    "implication": "Short thesis still early; timing risk of false negatives. Thesis intact; conviction on size until data align.",
+    "action": "Short marked under review; risk limits tightened through next two prints."
   },
   {
     "date": "2025-11-18",
-    "title": "OEM autonomy spend commentary",
-    "whatChanged": "Multiple OEMs emphasized near-term ADAS monetization and deferred explicit L4 city expansion targets.",
-    "implication": "Challenges leg of thesis leaning on broad OEM transformation as a near-term catalyst; reinforces preference for compute and fleet-first operators.",
-    "action": "Exit legacy OEM long thesis (Ford) and recycle capital into higher-conviction enabler exposure."
+    "title": "OEM commentary: ADAS near term, L4 deferred",
+    "whatChanged": "Several OEMs stressed monetizable ADAS and were noncommittal on urban L4 timelines.",
+    "implication": "Weakens broad OEM-transition leg; reinforces compute and fleet-led exposure.",
+    "action": "Closed legacy OEM long; redeployed to higher-conviction enabler sleeves."
   },
   {
     "date": "2025-08-07",
-    "title": "Initial framework live",
-    "whatChanged": "Published monitoring framework alongside case study draft; defined KPI set and falsification conditions.",
-    "implication": "Establishes baseline discipline for updates; future entries should reference KPI deltas where possible.",
-    "action": "No action."
+    "title": "Monitor initial publication",
+    "whatChanged": "Published this tracker with KPI set and falsification list alongside case draft.",
+    "implication": "Baseline for dated updates; entries should cite metric deltas where possible.",
+    "action": "None."
   }
 ]

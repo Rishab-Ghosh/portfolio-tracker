@@ -2,38 +2,25 @@ import type { Kpi } from "@/types/data";
 
 export function KPIMonitor({ kpis }: { kpis: Kpi[] }) {
   return (
-    <ol className="space-y-6">
-      {kpis.map((k, i) => (
-        <li
-          key={k.name}
-          className="rounded-lg border border-zinc-200/90 bg-white p-5 sm:p-6"
-        >
-          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <span className="font-mono text-xs text-zinc-400 tabular-nums">
-              {(i + 1).toString().padStart(2, "0")}
-            </span>
-            <h3 className="text-base font-medium text-zinc-900">{k.name}</h3>
+    <ol className="space-y-8">
+      {kpis.map((k) => (
+        <li key={k.name} className="border-b border-zinc-200 pb-8 last:border-b-0 last:pb-0">
+          <h3 className="text-[15px] font-medium leading-snug text-zinc-900">{k.name}</h3>
+          <p className="mt-4 max-w-3xl text-[15px] leading-[1.65] text-zinc-800">{k.interpretation}</p>
+          <div className="mt-6 grid gap-6 border-t border-zinc-100 pt-6 sm:grid-cols-2 sm:gap-8">
+            <div>
+              <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-zinc-500">
+                Linkage
+              </p>
+              <p className="mt-2 text-[13px] leading-relaxed text-zinc-600">{k.whyItMatters}</p>
+            </div>
+            <div>
+              <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-zinc-500">
+                Observation
+              </p>
+              <p className="mt-2 text-[13px] leading-relaxed text-zinc-600">{k.statusPlaceholder}</p>
+            </div>
           </div>
-          <dl className="mt-4 space-y-3 text-sm">
-            <div>
-              <dt className="text-xs font-medium uppercase tracking-wide text-zinc-500">
-                Why it matters
-              </dt>
-              <dd className="mt-1 leading-relaxed text-zinc-700">{k.whyItMatters}</dd>
-            </div>
-            <div>
-              <dt className="text-xs font-medium uppercase tracking-wide text-zinc-500">
-                Current status
-              </dt>
-              <dd className="mt-1 leading-relaxed text-zinc-600">{k.statusPlaceholder}</dd>
-            </div>
-            <div>
-              <dt className="text-xs font-medium uppercase tracking-wide text-zinc-500">
-                Interpretation
-              </dt>
-              <dd className="mt-1 leading-relaxed text-zinc-700">{k.interpretation}</dd>
-            </div>
-          </dl>
         </li>
       ))}
     </ol>

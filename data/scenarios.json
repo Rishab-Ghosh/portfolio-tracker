@@ -1,20 +1,20 @@
 {
   "bull": {
-    "label": "Bull",
-    "whatHappens": "Urban robotaxi unit economics cross internal hurdles by year three; two additional major metros approve expanded driverless domains; personal-auto combined ratios inflect as frequency benefits appear in disclosed data.",
-    "whatConfirms": "Sequential permit expansion, rising autonomous passenger-mile share without sustained safety regressions, and insurer commentary acknowledging structural frequency improvement.",
-    "positionImpact": "Long AV compute and stack exposure benefits most; short personal-lines hedges work but require discipline on timing. Legacy OEM longs that lack fleet leverage underperform."
+    "label": "Upside",
+    "whatHappens": "By year three, at least one urban robotaxi network clears internal unit-economic hurdles; additional metros widen driverless domains without rolling back prior approvals; personal-auto loss costs show durable frequency improvement in disclosed data.",
+    "whatConfirms": "Sequential permit expansion, rising autonomous passenger-mile share without sustained safety regression, and carrier commentary that ties frequency to pool composition—not only rate.",
+    "positionImpact": "Long compute and stack exposure works; personal-lines hedges need tight timing discipline. Legacy OEM longs without fleet leverage lag."
   },
   "base": {
     "label": "Base",
-    "whatHappens": "Deployment proceeds in a stair-step pattern with periodic pauses after incidents; insurance and liability adjust slowly; ownership declines gradually in dense cities while suburbs lag.",
-    "whatConfirms": "Regulatory two-steps-forward-one-back pattern, mixed insurer results, and gradual residual pressure concentrated in urban segments.",
-    "positionImpact": "Thesis remains valid but path-dependent; position sizing favors liquid enablers over illiquid single-operator bets. Shorts require tight risk controls around earnings noise."
+    "whatHappens": "Deployment advances in steps with pauses after incidents; liability and insurance terms adjust slowly; ownership drifts down in dense cities while suburbs move later.",
+    "whatConfirms": "Regulatory advance-and-pause pattern, mixed carrier results, residual pressure concentrated in urban segments.",
+    "positionImpact": "Thesis remains operative but path-dependent; size favors liquid enablers over concentrated single-name operator risk. Shorts sized for earnings noise."
   },
   "bear": {
-    "label": "Bear",
-    "whatHappens": "A persistent safety or political backlash restricts domains; insurers retrench without clear frequency data; OEMs delay programs and consolidate spend on driver-assist only.",
-    "whatConfirms": "Permit revocations or moratoria, rising severity narratives, and capex cuts to L4 programs with no offsetting regulatory progress.",
-    "positionImpact": "AV pure-plays and aggressive longs are hurt; personal-auto insurers may mean-revert; cash-rich platforms with diversified revenue outperform narrow autonomy bets."
+    "label": "Downside",
+    "whatHappens": "Safety or political backlash narrows domains for an extended period; carriers retrench without clear frequency data; OEMs defer city autonomy and reallocate to driver-assist.",
+    "whatConfirms": "Permit pullbacks, severity-led narratives without offsetting frequency evidence, and capex cuts to urban L4 programs.",
+    "positionImpact": "Narrow autonomy longs underperform; personal-auto writers may stabilize; diversified platforms with non-AV earnings outperform single-theme names."
   }
 }

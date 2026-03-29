@@ -1,25 +1,25 @@
 {
-  "coreThesis": "Over the next five years, economically meaningful autonomous passenger mobility scales first in dense U.S. cities, compressing personal auto risk pools, reallocating liability, and reshaping fleet utilization and residual values. The path is uneven—regulation, insurance, and OEM economics will lag technology—but the direction of travel favors operators and enablers of supervised autonomy while pressuring legacy personal-auto exposure.",
+  "coreThesis": "Meaningful scale in urban autonomous passenger miles arrives in steps, not a single release. Personal-auto risk pools, liability allocation, and utilization economics adjust with a lag to technology. Over a five-year horizon, that lag creates skew: enablers of fleet-deployed autonomy and compute-intensive validation compound; legacy personal-auto exposure and slow-to-pivot OEM narratives face friction.",
   "drivers": [
     {
-      "title": "AV adoption in major U.S. cities",
-      "detail": "Measured growth in permitted robotaxi/ride-hail miles and share of urban passenger trips served by supervised or driverless fleets."
+      "title": "Urban AV miles and trip share",
+      "detail": "Permitted robotaxi and ride-hail miles, and share of trips in target metros served by supervised or driverless fleets—timing and slope matter more than headlines."
     },
     {
-      "title": "Reduced accident frequency",
-      "detail": "Directional improvement in per-mile collision rates where ADS data is available, and insurer commentary on bodily injury severity trends."
+      "title": "Collision frequency and severity",
+      "detail": "Per-mile outcomes where ADS data are comparable to human baselines; insurer loss-cost commentary as a coarse check on whether the pool is repricing."
     },
     {
-      "title": "Regulatory support for autonomous fleets",
-      "detail": "State and municipal frameworks that expand operating domains, reduce friction for fleet deployment, and clarify testing-to-commercial pathways."
+      "title": "Regulatory path for fleets",
+      "detail": "Domain expansion, incident response, and clarity from permit to commercial service—often the binding constraint on scale."
     },
     {
-      "title": "Liability shifting away from individual drivers",
-      "detail": "Court outcomes, policy language, and OEM/fleet indemnification structures that move accident cost toward manufacturers and fleet operators."
+      "title": "Liability and indemnification",
+      "detail": "How courts, policies, and OEM/fleet contracts assign accident cost as the driver’s role in the stack shrinks."
     },
     {
-      "title": "Ownership and utilization economics",
-      "detail": "Fleet utilization, total cost per mile, and used-vehicle residual curves as miles shift from owned vehicles to on-demand autonomous supply."
+      "title": "Utilization and residuals",
+      "detail": "Fleet miles per asset, revenue per mile, and passenger-vehicle residual curves as miles migrate toward on-demand supply."
     }
   ]
 }

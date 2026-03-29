@@ -22,32 +22,38 @@ const kpisData = kpis as Kpi[];
 const scenariosData = scenarios as Scenarios;
 const journalData = journal as JournalEntry[];
 
+const contents = [
+  ["thesis-overview", "Thesis"],
+  ["positions", "Positions"],
+  ["kpis", "KPIs"],
+  ["scenarios", "Scenarios"],
+  ["journal", "Journal"],
+  ["falsification", "Falsification"],
+] as const;
+
 export default function Home() {
   return (
-    <div className="flex min-h-full flex-1 flex-col bg-zinc-50/80">
+    <div className="flex min-h-full flex-1 flex-col bg-[#f7f7f6]">
       <a
         href="#thesis-overview"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:px-3 focus:py-2 focus:shadow focus:ring-1 focus:ring-zinc-300"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:border focus:border-zinc-300 focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:text-zinc-900"
       >
         Skip to content
       </a>
-      <main className="mx-auto w-full max-w-5xl flex-1 px-5 pb-16 sm:px-8">
+      <main className="mx-auto w-full max-w-[52rem] flex-1 px-5 pb-20 sm:px-10">
         <Hero title={site.title} subtitle={site.subtitle} intro={site.intro} />
 
         <nav
-          className="sticky top-0 z-40 -mx-5 mb-2 border-b border-zinc-200/90 bg-zinc-50/95 px-5 py-3 backdrop-blur-sm sm:-mx-8 sm:px-8"
-          aria-label="Section navigation"
+          className="border-b border-zinc-200 py-3"
+          aria-label="Section links"
         >
-          <ul className="flex flex-wrap gap-x-4 gap-y-2 text-xs font-medium text-zinc-600">
-            {[
-              ["thesis-overview", "Thesis"],
-              ["positions", "Positions"],
-              ["kpis", "KPIs"],
-              ["scenarios", "Scenarios"],
-              ["journal", "Journal"],
-              ["falsification", "Falsification"],
-            ].map(([id, label]) => (
-              <li key={id}>
+          <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-zinc-500">
+            Contents
+          </p>
+          <ul className="mt-2 flex flex-wrap gap-x-1 gap-y-1 text-[12px] text-zinc-600">
+            {contents.map(([id, label], i) => (
+              <li key={id} className="flex items-center gap-x-1">
+                {i > 0 ? <span className="text-zinc-300" aria-hidden>·</span> : null}
                 <a href={`#${id}`} className="hover:text-zinc-900">
                   {label}
                 </a>
@@ -56,32 +62,27 @@ export default function Home() {
           </ul>
         </nav>
 
-        <Section id="thesis-overview" eyebrow="Overview" title="Thesis">
+        <Section id="thesis-overview" eyebrow="I" title="Thesis">
           <ThesisOverview coreThesis={thesis.coreThesis} drivers={thesis.drivers} />
         </Section>
 
-        <Section id="positions" eyebrow="Portfolio" title="Position tracker">
-          <p className="mb-6 max-w-2xl text-sm leading-relaxed text-zinc-600">
-            Expressed views and monitoring status. Current prices are placeholders until wired to
-            a data source; update <code className="rounded bg-zinc-100 px-1 font-mono text-xs">data/positions.json</code>{" "}
-            as needed.
-          </p>
+        <Section id="positions" eyebrow="II" title="Positions">
           <PositionTracker positions={positionsData} />
         </Section>
 
-        <Section id="kpis" eyebrow="Evidence" title="KPI monitor">
+        <Section id="kpis" eyebrow="III" title="Key performance indicators">
           <KPIMonitor kpis={kpisData} />
         </Section>
 
-        <Section id="scenarios" eyebrow="Outcomes" title="Scenario framework">
+        <Section id="scenarios" eyebrow="IV" title="Scenarios">
           <ScenarioFramework scenarios={scenariosData} />
         </Section>
 
-        <Section id="journal" eyebrow="Log" title="Thesis journal">
+        <Section id="journal" eyebrow="V" title="Journal">
           <ThesisJournal entries={journalData} />
         </Section>
 
-        <Section id="falsification" eyebrow="Discipline" title="What would prove me wrong">
+        <Section id="falsification" eyebrow="VI" title="What would prove this wrong">
           <ThesisIntegrity items={falsification.items} />
         </Section>
 

@@ -7,7 +7,7 @@
     "entryDate": "2024-09-12",
     "entryPrice": 116.5,
     "currentPrice": 142.8,
-    "thesisSummary": "Training and in-vehicle inference demand scale with fleet software iteration; simulation and validation workloads compound as OEMs and operators expand domains.",
+    "thesisSummary": "Training, sim, and in-vehicle inference load rises with iteration on fleet software and domain expansion; validation work is recurring, not one-off.",
     "status": "validated"
   },
   {
@@ -18,7 +18,7 @@
     "entryDate": "2024-11-03",
     "entryPrice": 17.2,
     "currentPrice": 19.4,
-    "thesisSummary": "Supervised autonomy and REM map economics improve as regulatory clarity and OEM roadmap credibility rise; content per vehicle increases through L2++ rollouts.",
+    "thesisSummary": "Roadmap credibility and regulatory visibility support REM and L2++ monetization; content per vehicle scales before full driverless economics.",
     "status": "tracking"
   },
   {
@@ -29,7 +29,7 @@
     "entryDate": "2025-01-15",
     "entryPrice": 168.4,
     "currentPrice": 172.1,
-    "thesisSummary": "Personal auto combined ratio pressure as frequency benefits lag severity and reserve noise; thesis predicated on gradual, not sudden, repricing of driver risk.",
+    "thesisSummary": "Short predicated on gradual pressure on personal-auto economics, not a single quarter; severity and reserve noise can mask frequency for long stretches.",
     "status": "under review"
   },
   {
@@ -40,7 +40,7 @@
     "entryDate": "2024-06-20",
     "entryPrice": 12.05,
     "currentPrice": 10.88,
-    "thesisSummary": "Underestimated cyclical and margin drag versus pure-play AV beneficiaries; legacy transformation slower to monetize than fleet-first operators.",
+    "thesisSummary": "Thesis overstated near-term payoff from legacy transformation versus fleet-first and silicon-heavy names; cycle and mix dominated the outcome.",
     "status": "broken"
   }
 ]

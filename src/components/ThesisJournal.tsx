@@ -15,34 +15,34 @@ export function ThesisJournal({ entries }: { entries: JournalEntry[] }) {
   );
 
   return (
-    <ul className="divide-y divide-zinc-200 rounded-lg border border-zinc-200/90 bg-white">
+    <ul className="divide-y divide-zinc-200 border border-zinc-200 bg-white">
       {sorted.map((e) => (
-        <li key={`${e.date}-${e.title}`} className="p-5 sm:p-6">
+        <li key={`${e.date}-${e.title}`} className="px-5 py-6 sm:px-6 sm:py-7">
           <time
-            className="text-xs font-medium uppercase tracking-wide text-zinc-500"
+            className="text-[10px] font-medium uppercase tracking-[0.12em] text-zinc-500"
             dateTime={e.date}
           >
             {formatDate(e.date)}
           </time>
-          <h3 className="mt-2 font-medium text-zinc-900">{e.title}</h3>
-          <dl className="mt-4 grid gap-4 text-sm sm:grid-cols-3">
-            <div className="sm:col-span-1">
-              <dt className="text-xs font-medium uppercase tracking-wide text-zinc-500">
-                What changed
+          <h3 className="mt-2 text-[15px] font-medium text-zinc-900">{e.title}</h3>
+          <dl className="mt-5 grid gap-6 text-[13px] sm:grid-cols-3 sm:gap-8">
+            <div>
+              <dt className="text-[10px] font-medium uppercase tracking-[0.12em] text-zinc-500">
+                Development
               </dt>
-              <dd className="mt-1 leading-relaxed text-zinc-700">{e.whatChanged}</dd>
+              <dd className="mt-2 leading-relaxed text-zinc-700">{e.whatChanged}</dd>
             </div>
-            <div className="sm:col-span-1">
-              <dt className="text-xs font-medium uppercase tracking-wide text-zinc-500">
-                Implication
+            <div>
+              <dt className="text-[10px] font-medium uppercase tracking-[0.12em] text-zinc-500">
+                Read-through
               </dt>
-              <dd className="mt-1 leading-relaxed text-zinc-700">{e.implication}</dd>
+              <dd className="mt-2 leading-relaxed text-zinc-700">{e.implication}</dd>
             </div>
-            <div className="sm:col-span-1">
-              <dt className="text-xs font-medium uppercase tracking-wide text-zinc-500">
-                Action
+            <div>
+              <dt className="text-[10px] font-medium uppercase tracking-[0.12em] text-zinc-500">
+                Disposition
               </dt>
-              <dd className="mt-1 leading-relaxed text-zinc-800">{e.action}</dd>
+              <dd className="mt-2 leading-relaxed text-zinc-800">{e.action}</dd>
             </div>
           </dl>
         </li>

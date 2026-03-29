@@ -6,15 +6,15 @@ interface HeroProps {
 
 export function Hero({ title, subtitle, intro }: HeroProps) {
   return (
-    <header className="border-b border-zinc-200/80 pb-14 pt-10 sm:pt-14">
-      <p className="text-xs font-medium uppercase tracking-widest text-zinc-500">
-        Monitoring framework
+    <header className="border-b border-zinc-200 pb-12 pt-8 sm:pb-14 sm:pt-10">
+      <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-zinc-500">
+        Thesis monitor · U.S. urban AV · 5y
       </p>
-      <h1 className="mt-3 font-serif text-4xl font-medium tracking-tight text-zinc-950 sm:text-5xl">
+      <h1 className="mt-4 font-serif text-[2rem] font-medium leading-tight tracking-tight text-zinc-950 sm:text-[2.35rem]">
         {title}
       </h1>
-      <p className="mt-5 max-w-2xl text-lg leading-relaxed text-zinc-600">{subtitle}</p>
-      <p className="mt-6 max-w-2xl text-base leading-relaxed text-zinc-700">{intro}</p>
+      <p className="mt-5 max-w-2xl text-[15px] leading-[1.65] text-zinc-700">{subtitle}</p>
+      <p className="mt-4 max-w-2xl text-sm leading-relaxed text-zinc-600">{intro}</p>
     </header>
   );
 }

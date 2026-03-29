@@ -16,7 +16,7 @@ const newsreader = Newsreader({
 export const metadata: Metadata = {
   title: "Live Thesis Tracker",
   description:
-    "A monitoring framework for a five-year investment thesis on the transition to autonomous vehicles.",
+    "Working thesis monitor: U.S. urban autonomous mobility, positions, KPIs, and falsification conditions.",
 };
 
 export default function RootLayout({
@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${newsreader.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-zinc-50 text-zinc-900">{children}</body>
+      <body className="min-h-full flex flex-col bg-[#f7f7f6] text-zinc-900">{children}</body>
     </html>
   );
 }

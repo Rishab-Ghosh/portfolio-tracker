@@ -6,19 +6,19 @@ interface SiteFooterProps {
 
 export function SiteFooter({ line, githubUrl, disclaimer }: SiteFooterProps) {
   return (
-    <footer className="mt-20 border-t border-zinc-200/80 py-10">
-      <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
-        <div className="max-w-xl space-y-2">
-          <p className="text-sm text-zinc-700">{line}</p>
-          <p className="text-xs leading-relaxed text-zinc-500">{disclaimer}</p>
+    <footer className="mt-24 border-t border-zinc-200 py-12">
+      <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
+        <div className="max-w-lg space-y-3">
+          <p className="text-[13px] leading-relaxed text-zinc-700">{line}</p>
+          <p className="text-[11px] leading-relaxed text-zinc-500">{disclaimer}</p>
         </div>
         <a
           href={githubUrl}
-          className="text-sm font-medium text-zinc-800 underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-600"
+          className="shrink-0 text-[13px] text-zinc-600 hover:text-zinc-900"
           target="_blank"
           rel="noopener noreferrer"
         >
-          GitHub repository
+          Source
         </a>
       </div>
     </footer>
