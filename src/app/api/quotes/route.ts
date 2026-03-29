@@ -1,33 +1,55 @@
 import positions from "@data/positions.json";
 import market from "@data/market.json";
-import {
-  fetchDailyCandles,
-  fetchQuote,
-  finnhubConfigured,
-} from "@/lib/finnhub";
+import { fetchDailyCandles, fetchQuote, finnhubConfigured } from "@/lib/finnhub";
+import { toPublicQuoteRow } from "@/lib/quote-response";
 import {
   buildRowMetrics,
   closeOnOrBefore,
   entryDateToUnixEndOfDay,
 } from "@/lib/position-metrics";
 import type { Position } from "@/types/data";
+import type { QuotesApiResponse } from "@/types/quote-api";
 
 export const dynamic = "force-dynamic";
 
 const list = positions as Position[];
 
-export async function GET() {
+function buildWarning(
+  failures: { symbol: string; kind: string }[],
+  candleOk: boolean,
+): string | undefined {
+  const parts: string[] = [];
+  if (!candleOk) {
+    parts.push("Benchmark history missing; excess vs benchmark may be blank.");
+  }
+  if (failures.length > 0) {
+    const auth = failures.some((f) => f.kind === "unauthorized");
+    const rate = failures.some((f) => f.kind === "rate_limit");
+    if (auth) {
+      parts.push("Quote service rejected the request—check FINNHUB_API_KEY.");
+    } else if (rate) {
+      parts.push("Rate limit hit; retry later or use offline prices.");
+    } else {
+      const syms = [...new Set(failures.map((f) => f.symbol))].slice(0, 6).join(", ");
+      parts.push(`Live price missing for: ${syms}${failures.length > 6 ? " …" : "."}`);
+    }
+  }
+  return parts.length ? parts.join(" ") : undefined;
+}
+
+export async function GET(): Promise<Response> {
   const benchmark = (market as { benchmarkTicker: string }).benchmarkTicker || "SPY";
   const updatedAt = new Date().toISOString();
 
   if (!finnhubConfigured()) {
-    return Response.json({
+    const body: QuotesApiResponse = {
       ok: false,
-      error: "FINNHUB_API_KEY is not set",
       updatedAt,
       benchmarkTicker: benchmark,
-      rows: list.map((p) => buildRowMetrics(p, null, null, null)),
-    });
+      warning: "FINNHUB_API_KEY is not set. Showing offline figures from positions data only.",
+      rows: list.map((p) => toPublicQuoteRow(buildRowMetrics(p, null, null, null))),
+    };
+    return Response.json(body);
   }
 
   const tickers = [...new Set(list.map((p) => p.ticker.toUpperCase()))];
@@ -39,47 +61,43 @@ export async function GET() {
     : Math.floor(Date.now() / 1000) - 86400 * 365;
   const toSec = Math.floor(Date.now() / 1000);
 
-  let candleError: string | undefined;
-  const candles = await fetchDailyCandles(benchmark, fromSec, toSec).catch(() => null);
-  if (!candles) candleError = "Benchmark history unavailable";
+  const candleOutcome = await fetchDailyCandles(benchmark, fromSec, toSec);
+  const candles = candleOutcome.ok ? candleOutcome.data : null;
 
-  const quotes: Record<string, number | null> = {};
-  const quoteErrors: string[] = [];
+  const quotes = new Map<string, number>();
+  const failures: { symbol: string; kind: string }[] = [];
 
-  await Promise.all(
-    symbols.map(async (sym) => {
-      const q = await fetchQuote(sym);
-      quotes[sym] = q?.c ?? null;
-      if (q?.c == null) quoteErrors.push(sym);
-    }),
-  );
+  for (const sym of symbols) {
+    const result = await fetchQuote(sym);
+    if (result.ok) quotes.set(sym, result.price);
+    else failures.push({ symbol: sym, kind: result.kind });
+    await new Promise((r) => setTimeout(r, 80));
+  }
 
-  const spyNow = quotes[benchmark] ?? null;
+  const spyNow = quotes.get(benchmark) ?? null;
 
-  const rows = list.map((p) => {
+  const rowsInternal = list.map((p) => {
     const sym = p.ticker.toUpperCase();
-    const live = quotes[sym] ?? null;
+    const live = quotes.get(sym) ?? null;
     let spyAtEntry: number | null = null;
     if (candles?.t && candles?.c) {
-      spyAtEntry = closeOnOrBefore(
-        candles.t,
-        candles.c,
-        entryDateToUnixEndOfDay(p.entryDate),
-      );
+      spyAtEntry = closeOnOrBefore(candles.t, candles.c, entryDateToUnixEndOfDay(p.entryDate));
     }
     return buildRowMetrics(p, live, spyAtEntry, spyNow);
   });
 
-  const ok = quoteErrors.length === 0 && !candleError;
+  const quotesComplete = failures.length === 0;
+  const benchComplete = candleOutcome.ok;
+  const ok = quotesComplete && benchComplete;
+  const warning = ok ? undefined : buildWarning(failures, benchComplete);
 
-  return Response.json({
+  const body: QuotesApiResponse = {
     ok,
     updatedAt,
     benchmarkTicker: benchmark,
-    error:
-      quoteErrors.length > 0
-        ? `Partial or failed quotes: ${quoteErrors.join(", ")}`
-        : candleError,
-    rows,
-  });
+    ...(warning ? { warning } : {}),
+    rows: rowsInternal.map(toPublicQuoteRow),
+  };
+
+  return Response.json(body);
 }

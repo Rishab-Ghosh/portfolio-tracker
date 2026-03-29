@@ -53,11 +53,17 @@ Not a retail trading UI. No auth, no database.
 
 ## Environment variables
 
-| Variable            | Required | Where used                          |
-|---------------------|----------|-------------------------------------|
-| `FINNHUB_API_KEY`   | Optional | Server: `src/app/api/quotes/route.ts`, `src/lib/finnhub.ts` |
+You only need **one** variable for market data:
 
-See `.env.example`.
+| Variable            | Required | Purpose |
+|---------------------|----------|---------|
+| **`FINNHUB_API_KEY`** | Optional (omit = offline prices only) | Finnhub REST API token; read **only on the server** in `src/lib/finnhub.ts` and `src/app/api/quotes/route.ts`. Never exposed to the browser. |
+
+Copy `.env.example` → `.env.local` locally; set the same name on Vercel under **Environment Variables**.
+
+### Client payload
+
+`GET /api/quotes` returns a small JSON object (`src/types/quote-api.ts`): `ok`, `updatedAt`, `benchmarkTicker`, optional `warning`, and `rows` with per-line **`last`**, **`absChange`**, **`pctReturn`**, **`excessVsBench`**, **`source`** (`live` | `offline` | `unavailable`). Raw Finnhub fields are not forwarded.
 
 ## Deploy to Vercel
 
@@ -84,8 +90,9 @@ Position **status** and scenario **monitorStatus** values must match the TypeScr
 
 ## Market data notes
 
-- **Last price** and **benchmark** (`SPY` by default) come from Finnhub **quote** endpoints on the server.
-- **vs SPY** is **position return since open** minus **SPY total return** from the position’s entry date (daily candles for SPY; close on or before open date vs current quote). This is a simple relative measure, not a formal alpha estimate.
+- **Last** and the **benchmark** ticker (`SPY` by default) use Finnhub **quote** on the server; benchmark history uses **daily candles** for since-open excess.
+- **Excess vs benchmark** = position **percent return since entry** minus benchmark **percent return** over the same window (not an estimated alpha).
+- **429** responses retry once; partial failures set `ok: false`, populate `warning`, and fall back to **`offlineQuote`** where needed.
 
 ## License / disclaimer
 
