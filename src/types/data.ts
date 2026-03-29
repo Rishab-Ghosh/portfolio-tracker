@@ -3,6 +3,14 @@ export interface ThesisDriver {
   detail: string;
 }
 
+export interface ThesisData {
+  coreThesis: string;
+  drivers: ThesisDriver[];
+  winners: string[];
+  losers: string[];
+  whyMatters: string;
+}
+
 export type PositionStatus =
   | "tracking"
   | "validated"
@@ -11,6 +19,7 @@ export type PositionStatus =
 
 export type PositionSide = "long" | "short";
 
+/** Static sleeve definition; live prices come from /api/quotes. */
 export interface Position {
   name: string;
   ticker: string;
@@ -18,29 +27,45 @@ export interface Position {
   category: string;
   entryDate: string;
   entryPrice: number;
-  currentPrice: number;
+  /** Used only when the quote API is unavailable. */
+  offlineQuote?: number;
   thesisSummary: string;
   status: PositionStatus;
 }
 
+export type KpiSourceType = "manual" | "api";
+
+export type KpiTrend = "up" | "down" | "flat" | "n/a";
+
 export interface Kpi {
   name: string;
   whyItMatters: string;
-  statusPlaceholder: string;
+  sourceType: KpiSourceType;
+  currentStatus: string;
   interpretation: string;
+  trend: KpiTrend;
 }
 
-export interface ScenarioColumn {
-  label: string;
-  whatHappens: string;
-  whatConfirms: string;
-  positionImpact: string;
+export type ScenarioMonitorStatus =
+  | "leading"
+  | "base case"
+  | "monitoring"
+  | "tail risk";
+
+export interface ScenarioCard {
+  name: string;
+  description: string;
+  confirmingSignals: string;
+  whatWouldHappen: string;
+  benefits: string;
+  hurt: string;
+  monitorStatus: ScenarioMonitorStatus;
 }
 
 export interface Scenarios {
-  bull: ScenarioColumn;
-  base: ScenarioColumn;
-  bear: ScenarioColumn;
+  bull: ScenarioCard;
+  base: ScenarioCard;
+  bear: ScenarioCard;
 }
 
 export interface JournalEntry {
@@ -49,9 +74,18 @@ export interface JournalEntry {
   whatChanged: string;
   implication: string;
   action: string;
+  tags?: string[];
 }
 
 export interface FalsificationItem {
   condition: string;
   detail: string;
+}
+
+export interface SiteMeta {
+  title: string;
+  subtitle: string;
+  intro: string;
+  launched: string;
+  thesisActive: boolean;
 }

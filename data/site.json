@@ -1,5 +1,7 @@
 {
   "title": "Live Thesis Tracker",
-  "subtitle": "Working document for a five-year view on economically meaningful autonomous passenger mobility in dense U.S. cities—liability, insurance, fleet economics, and ownership.",
-  "intro": "Tracks stated positions, assumptions, observable metrics, and thesis state over time. Maintained alongside a full write-up; not a pitch and not advice."
+  "subtitle": "Investment Monitoring Dashboard",
+  "intro": "Live companion to a five-year thesis on autonomous passenger mobility in major U.S. cities. Tracks expressed positions, non-price evidence, scenario posture, and dated updates—so a reader can see what is believed, what is watched, and what would change the view.",
+  "launched": "2025-08-07",
+  "thesisActive": true
 }

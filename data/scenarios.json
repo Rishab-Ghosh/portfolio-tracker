@@ -1,20 +1,29 @@
 {
   "bull": {
-    "label": "Upside",
-    "whatHappens": "By year three, at least one urban robotaxi network clears internal unit-economic hurdles; additional metros widen driverless domains without rolling back prior approvals; personal-auto loss costs show durable frequency improvement in disclosed data.",
-    "whatConfirms": "Sequential permit expansion, rising autonomous passenger-mile share without sustained safety regression, and carrier commentary that ties frequency to pool composition—not only rate.",
-    "positionImpact": "Long compute and stack exposure works; personal-lines hedges need tight timing discipline. Legacy OEM longs without fleet leverage lag."
+    "name": "Upside",
+    "description": "Urban robotaxi networks clear internal unit-economic hurdles; additional metros widen driverless domains without sustained rollback; personal-auto loss costs show durable frequency improvement in carrier data.",
+    "confirmingSignals": "Sequential permit expansion; rising autonomous passenger-mile share without repeated safety regressions; management commentary linking frequency to pool mix.",
+    "whatWouldHappen": "Enabler and operator economics re-rate; personal-auto shorts work but require timing discipline; narrow OEM longs without fleet leverage lag.",
+    "benefits": "Long: NVDA, MBLY. Hedged short: ALL (if frequency story coheres).",
+    "hurt": "Long legacy OEM without fleet optionality; late-cycle personal-auto longs.",
+    "monitorStatus": "monitoring"
   },
   "base": {
-    "label": "Base",
-    "whatHappens": "Deployment advances in steps with pauses after incidents; liability and insurance terms adjust slowly; ownership drifts down in dense cities while suburbs move later.",
-    "whatConfirms": "Regulatory advance-and-pause pattern, mixed carrier results, residual pressure concentrated in urban segments.",
-    "positionImpact": "Thesis remains operative but path-dependent; size favors liquid enablers over concentrated single-name operator risk. Shorts sized for earnings noise."
+    "name": "Base",
+    "description": "Deployment advances in steps with pauses after incidents; liability and insurance terms adjust slowly; urban ownership drifts down while suburbs lag.",
+    "confirmingSignals": "Regulatory advance-and-pause; mixed carrier results; residual pressure concentrated in dense markets.",
+    "whatWouldHappen": "Thesis remains operative but path-dependent; sizing favors liquid enablers over concentrated operator risk; shorts sized for earnings noise.",
+    "benefits": "Liquid compute / stack exposure; diversified platforms with non-AV earnings.",
+    "hurt": "Illiquid single-operator bets; oversized thematic shorts into volatility.",
+    "monitorStatus": "base case"
   },
   "bear": {
-    "label": "Downside",
-    "whatHappens": "Safety or political backlash narrows domains for an extended period; carriers retrench without clear frequency data; OEMs defer city autonomy and reallocate to driver-assist.",
-    "whatConfirms": "Permit pullbacks, severity-led narratives without offsetting frequency evidence, and capex cuts to urban L4 programs.",
-    "positionImpact": "Narrow autonomy longs underperform; personal-auto writers may stabilize; diversified platforms with non-AV earnings outperform single-theme names."
+    "name": "Downside",
+    "description": "Safety or political backlash narrows domains for an extended period; carriers retrench without frequency clarity; OEMs defer city autonomy and consolidate on driver-assist.",
+    "confirmingSignals": "Permit pullbacks or moratoria; severity-led narratives without offsetting frequency data; capex cuts to urban L4 programs.",
+    "whatWouldHappen": "Narrow autonomy longs underperform; personal-auto writers may stabilize; diversified megacaps outperform single-theme names.",
+    "benefits": "Personal lines with pricing power; cash-generative diversified incumbents.",
+    "hurt": "Pure-play autonomy longs; aggressive personal-auto shorts into mean reversion.",
+    "monitorStatus": "tail risk"
   }
 }

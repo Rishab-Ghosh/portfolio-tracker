@@ -1,25 +1,34 @@
 {
-  "coreThesis": "Meaningful scale in urban autonomous passenger miles arrives in steps, not a single release. Personal-auto risk pools, liability allocation, and utilization economics adjust with a lag to technology. Over a five-year horizon, that lag creates skew: enablers of fleet-deployed autonomy and compute-intensive validation compound; legacy personal-auto exposure and slow-to-pivot OEM narratives face friction.",
+  "coreThesis": "Economically meaningful urban AV miles scale in steps; regulation, insurance, and OEM economics lag technology. That lag skews outcomes toward fleet-deployed autonomy enablers and compute-heavy validation, while legacy personal-auto pools and slow pivots absorb friction.",
   "drivers": [
     {
       "title": "Urban AV miles and trip share",
-      "detail": "Permitted robotaxi and ride-hail miles, and share of trips in target metros served by supervised or driverless fleets—timing and slope matter more than headlines."
+      "detail": "Permitted robotaxi / ride-hail miles and share of trips in target metros—slope and persistence matter more than launch headlines."
     },
     {
       "title": "Collision frequency and severity",
-      "detail": "Per-mile outcomes where ADS data are comparable to human baselines; insurer loss-cost commentary as a coarse check on whether the pool is repricing."
+      "detail": "Comparable ADS vs. human baselines where data exist; carrier loss-cost commentary as a coarse check on pool repricing."
     },
     {
       "title": "Regulatory path for fleets",
-      "detail": "Domain expansion, incident response, and clarity from permit to commercial service—often the binding constraint on scale."
+      "detail": "Domain expansion, incident response, and permit-to-service clarity—often the binding cap on scale."
     },
     {
       "title": "Liability and indemnification",
-      "detail": "How courts, policies, and OEM/fleet contracts assign accident cost as the driver’s role in the stack shrinks."
+      "detail": "How accident cost shifts as the human driver’s role in the stack shrinks."
     },
     {
       "title": "Utilization and residuals",
-      "detail": "Fleet miles per asset, revenue per mile, and passenger-vehicle residual curves as miles migrate toward on-demand supply."
+      "detail": "Fleet economics and passenger-vehicle residuals as miles migrate toward on-demand supply."
     }
-  ]
+  ],
+  "winners": [
+    "NVDA — AV compute, training, and simulation load tied to fleet iteration",
+    "MBLY — ADAS / map content scaling ahead of full driverless economics"
+  ],
+  "losers": [
+    "ALL (short) — personal-auto exposure if frequency narrative lags severity",
+    "F (long, broken) — legacy OEM pivot underperformed fleet-first and silicon-heavy legs"
+  ],
+  "whyMatters": "If the thesis is right, risk and returns reprice around miles, liability, and utilization—not a single autonomy headline. The dashboard ties positions to those observables and states what would falsify the view."
 }

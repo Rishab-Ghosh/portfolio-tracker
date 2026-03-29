@@ -14,9 +14,9 @@ const newsreader = Newsreader({
 });
 
 export const metadata: Metadata = {
-  title: "Live Thesis Tracker",
+  title: "Live Thesis Tracker · Investment Monitoring Dashboard",
   description:
-    "Working thesis monitor: U.S. urban autonomous mobility, positions, KPIs, and falsification conditions.",
+    "Live companion to a five-year thesis on U.S. urban autonomous mobility: positions, KPIs, scenarios, and journal.",
 };
 
 export default function RootLayout({

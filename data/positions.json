@@ -6,7 +6,7 @@
     "category": "AV compute / simulation",
     "entryDate": "2024-09-12",
     "entryPrice": 116.5,
-    "currentPrice": 142.8,
+    "offlineQuote": 142.8,
     "thesisSummary": "Training, sim, and in-vehicle inference load rises with iteration on fleet software and domain expansion; validation work is recurring, not one-off.",
     "status": "validated"
   },
@@ -17,7 +17,7 @@
     "category": "ADAS / autonomy stack",
     "entryDate": "2024-11-03",
     "entryPrice": 17.2,
-    "currentPrice": 19.4,
+    "offlineQuote": 19.4,
     "thesisSummary": "Roadmap credibility and regulatory visibility support REM and L2++ monetization; content per vehicle scales before full driverless economics.",
     "status": "tracking"
   },
@@ -28,7 +28,7 @@
     "category": "Personal lines P&C",
     "entryDate": "2025-01-15",
     "entryPrice": 168.4,
-    "currentPrice": 172.1,
+    "offlineQuote": 172.1,
     "thesisSummary": "Short predicated on gradual pressure on personal-auto economics, not a single quarter; severity and reserve noise can mask frequency for long stretches.",
     "status": "under review"
   },
@@ -39,7 +39,7 @@
     "category": "Legacy OEM transition",
     "entryDate": "2024-06-20",
     "entryPrice": 12.05,
-    "currentPrice": 10.88,
+    "offlineQuote": 10.88,
     "thesisSummary": "Thesis overstated near-term payoff from legacy transformation versus fleet-first and silicon-heavy names; cycle and mix dominated the outcome.",
     "status": "broken"
   }
