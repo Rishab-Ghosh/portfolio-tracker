@@ -3,22 +3,21 @@ import type { PositionStatus } from "@/types/data";
 const labels: Record<PositionStatus, string> = {
   tracking: "Tracking",
   validated: "Validated",
-  "under review": "Under Review",
+  "under review": "Under review",
   broken: "Broken",
 };
 
-/** Subtle, outline-only tags for thesis state—no fill contrast blocks. */
 const styles: Record<PositionStatus, string> = {
-  tracking: "border-zinc-300/90 text-zinc-600",
-  validated: "border-zinc-400 text-zinc-800",
-  "under review": "border-zinc-300 border-dashed text-zinc-600",
-  broken: "border-zinc-200 text-zinc-500",
+  tracking: "border-zinc-200 text-zinc-600",
+  validated: "border-zinc-300 text-zinc-800",
+  "under review": "border-dashed border-zinc-200 text-zinc-600",
+  broken: "border-zinc-200/80 text-zinc-400",
 };
 
 export function StatusBadge({ status }: { status: PositionStatus }) {
   return (
     <span
-      className={`inline-flex items-center rounded-sm border bg-transparent px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.08em] ${styles[status]}`}
+      className={`inline-flex max-w-full items-center whitespace-nowrap border bg-white px-2 py-0.5 text-[11px] font-normal leading-none tracking-normal ${styles[status]}`}
     >
       {labels[status]}
     </span>

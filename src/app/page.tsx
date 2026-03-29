@@ -42,25 +42,35 @@ const contents = [
 
 export default function Home() {
   return (
-    <div className="flex min-h-full flex-1 flex-col bg-[#f7f7f6]">
+    <div className="flex min-h-full flex-1 flex-col bg-[var(--background)]">
       <a
         href="#thesis-overview"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:border focus:border-zinc-300 focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:text-zinc-900"
       >
         Skip to content
       </a>
-      <main className="mx-auto w-full max-w-[52rem] flex-1 px-5 pb-20 sm:px-10">
+      <main className="mx-auto w-full max-w-[48rem] flex-1 px-4 pb-16 pt-0 sm:px-8 sm:pb-20 lg:px-0">
         <Hero site={siteData} />
 
-        <nav className="border-b border-zinc-200 py-3" aria-label="Section links">
-          <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-zinc-500">
+        <nav
+          className="border-b border-zinc-200 py-3.5 sm:py-4"
+          aria-label="Section links"
+        >
+          <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-zinc-500">
             Contents
           </p>
-          <ul className="mt-2 flex flex-wrap gap-x-1 gap-y-1 text-[12px] text-zinc-600">
+          <ul className="mt-2.5 flex flex-wrap gap-x-0.5 gap-y-2 text-[13px] leading-snug text-zinc-600">
             {contents.map(([id, label], i) => (
-              <li key={id} className="flex items-center gap-x-1">
-                {i > 0 ? <span className="text-zinc-300" aria-hidden>·</span> : null}
-                <a href={`#${id}`} className="hover:text-zinc-900">
+              <li key={id} className="flex items-center gap-x-1.5">
+                {i > 0 ? (
+                  <span className="select-none text-zinc-300" aria-hidden>
+                    ·
+                  </span>
+                ) : null}
+                <a
+                  href={`#${id}`}
+                  className="rounded-sm px-0.5 decoration-zinc-300 underline-offset-[5px] hover:text-zinc-900 hover:underline"
+                >
                   {label}
                 </a>
               </li>

@@ -1,9 +1,9 @@
 {
   "title": "Live Thesis Tracker",
-  "subtitle": "Investment Monitoring Dashboard",
-  "intro": "Thesis monitor first: what is claimed, what would change the view, and how evidence is logged over time. Market levels are supporting context—useful for discipline, not the core argument.",
+  "subtitle": "Investment monitoring — five-year urban autonomy thesis",
+  "intro": "Working record of the claim, the evidence watched, and the conditions that would change the view. Equity marks are secondary: they discipline timing and sizing, not the core argument.",
   "launched": "2025-08-07",
   "thesisActive": true,
-  "leadPositions": "These names express the thesis in §I—they are not presented as a diversified portfolio. Read thesis state (badges) and each line’s view before prices; quotes refresh as a secondary check.",
-  "leadKpis": "Observables outside equity marks. Entries are manual for now; structure is ready if a source is later wired."
+  "leadPositions": "Names implement the thesis in section I; they are not offered as a diversified portfolio. Read state and each line’s rationale before prices. Refreshed quotes are a check, not the thesis.",
+  "leadKpis": "Observables outside listed prices. Entries are manual; the schema can accept feeds later without restructuring the page."
 }

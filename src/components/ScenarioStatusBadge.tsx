@@ -8,16 +8,16 @@ const labels: Record<ScenarioMonitorStatus, string> = {
 };
 
 const styles: Record<ScenarioMonitorStatus, string> = {
-  leading: "border-zinc-400 text-zinc-800",
-  "base case": "border-zinc-800 text-zinc-900",
-  monitoring: "border-dashed border-zinc-300 text-zinc-600",
-  "tail risk": "border-zinc-200 text-zinc-500",
+  leading: "border-zinc-200 text-zinc-700",
+  "base case": "border-zinc-300 text-zinc-900",
+  monitoring: "border-dashed border-zinc-200 text-zinc-600",
+  "tail risk": "border-zinc-200/70 text-zinc-500",
 };
 
 export function ScenarioStatusBadge({ status }: { status: ScenarioMonitorStatus }) {
   return (
     <span
-      className={`inline-flex items-center rounded-sm border bg-transparent px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.08em] ${styles[status]}`}
+      className={`inline-flex max-w-full items-center whitespace-nowrap border bg-white px-2 py-0.5 text-[11px] font-normal leading-none tracking-normal ${styles[status]}`}
     >
       {labels[status]}
     </span>

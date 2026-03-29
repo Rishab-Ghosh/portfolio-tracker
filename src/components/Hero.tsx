@@ -11,24 +11,27 @@ function formatLaunched(iso: string) {
 
 export function Hero({ site }: { site: SiteMeta }) {
   return (
-    <header className="border-b border-zinc-200 pb-12 pt-8 sm:pb-14 sm:pt-10">
-      <div className="flex flex-wrap items-center gap-2 gap-y-2">
+    <header className="border-b border-zinc-200 pb-11 pt-7 sm:pb-12 sm:pt-9">
+      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-2">
         {site.thesisActive ? (
-          <span className="rounded-sm border border-zinc-300 bg-white px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.1em] text-zinc-700">
-            Thesis active
+          <span className="border border-zinc-200 bg-white px-2 py-0.5 text-[11px] font-normal text-zinc-600">
+            Monitor active
           </span>
         ) : null}
         <span className="text-[11px] text-zinc-500">
-          Launched <time dateTime={site.launched}>{formatLaunched(site.launched)}</time>
+          <span className="text-zinc-400">Origin</span>{" "}
+          <time className="text-zinc-600" dateTime={site.launched}>
+            {formatLaunched(site.launched)}
+          </time>
         </span>
       </div>
-      <h1 className="mt-5 font-serif text-[2rem] font-medium leading-tight tracking-tight text-zinc-950 sm:text-[2.35rem]">
+      <h1 className="mt-6 font-serif text-[1.85rem] font-medium leading-[1.15] tracking-tight text-zinc-950 sm:text-[2.2rem]">
         {site.title}
       </h1>
-      <p className="mt-2 text-[13px] font-medium uppercase tracking-[0.12em] text-zinc-600">
+      <p className="mt-3 text-[0.8125rem] font-normal leading-snug text-zinc-600 sm:text-sm">
         {site.subtitle}
       </p>
-      <p className="mt-5 max-w-2xl text-[15px] leading-[1.65] text-zinc-700">{site.intro}</p>
+      <p className="mt-6 max-w-[38rem] text-[15px] leading-[1.65] text-zinc-700">{site.intro}</p>
     </header>
   );
 }
