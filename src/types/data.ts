@@ -95,3 +95,9 @@ export interface SiteMeta {
   /** Section IV — non-price evidence */
   leadKpis: string;
 }
+
+/** `data/market.json` — benchmark and quote poll cadence */
+export interface MarketConfig {
+  benchmarkTicker: string;
+  pollIntervalSeconds: number;
+}

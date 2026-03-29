@@ -7,7 +7,7 @@ import {
   closeOnOrBefore,
   entryDateToUnixEndOfDay,
 } from "@/lib/position-metrics";
-import type { Position } from "@/types/data";
+import type { MarketConfig, Position } from "@/types/data";
 import type { QuotesApiResponse } from "@/types/quote-api";
 
 export const dynamic = "force-dynamic";
@@ -38,7 +38,7 @@ function buildWarning(
 }
 
 export async function GET(): Promise<Response> {
-  const benchmark = (market as { benchmarkTicker: string }).benchmarkTicker || "SPY";
+  const benchmark = (market as MarketConfig).benchmarkTicker || "SPY";
   const updatedAt = new Date().toISOString();
 
   if (!finnhubConfigured()) {

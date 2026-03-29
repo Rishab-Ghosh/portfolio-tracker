@@ -16,7 +16,15 @@ import journal from "@data/journal.json";
 import falsification from "@data/falsification.json";
 import footer from "@data/footer.json";
 import market from "@data/market.json";
-import type { JournalEntry, Kpi, Position, Scenarios, SiteMeta, ThesisData } from "@/types/data";
+import type {
+  JournalEntry,
+  Kpi,
+  MarketConfig,
+  Position,
+  Scenarios,
+  SiteMeta,
+  ThesisData,
+} from "@/types/data";
 
 const positionsData = positions as Position[];
 const kpisData = kpis as Kpi[];
@@ -24,7 +32,7 @@ const scenariosData = scenarios as Scenarios;
 const journalData = journal as JournalEntry[];
 const siteData = site as SiteMeta;
 const thesisData = thesis as ThesisData;
-const marketData = market as { benchmarkTicker: string; pollIntervalSeconds: number };
+const marketData = market as MarketConfig;
 
 const pollMs = Math.min(
   Math.max((marketData.pollIntervalSeconds ?? 120) * 1000, 60_000),
