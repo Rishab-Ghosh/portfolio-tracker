@@ -45,6 +45,8 @@ function fmtMv(x: number) {
 
 const emptyPayload: PortfolioApiResponse = {
   ok: false,
+  dataSource: "offline",
+  asOf: "",
   inceptionDate: "2026-03-27",
   startingNav: 100_000,
   benchmarkTicker: "SPY",
@@ -115,6 +117,36 @@ export function TradeDesk({
     { month: "short", day: "numeric", year: "numeric" },
   );
 
+  const asOfFmt = data.asOf
+    ? new Date(data.asOf).toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+      })
+    : null;
+
+  const sourceLabel =
+    data.dataSource === "live"
+      ? "Live"
+      : data.dataSource === "close"
+        ? "Last close"
+        : "Offline";
+
+  const sourceDot =
+    data.dataSource === "live"
+      ? "bg-emerald-400"
+      : data.dataSource === "close"
+        ? "bg-amber-400"
+        : "bg-zinc-600";
+
+  const sourceTextColor =
+    data.dataSource === "live"
+      ? "text-emerald-400"
+      : data.dataSource === "close"
+        ? "text-amber-300"
+        : "text-zinc-500";
+
   const statCards = [
     { label: "Current NAV", value: usd.format(h.currentNav) },
     { label: "Day P&L", value: fmtPnl(h.dayPnl), sub: fmtPct(h.dayPnlPct) },
@@ -164,6 +196,21 @@ export function TradeDesk({
                 <dd className="font-mono text-zinc-300">{data.benchmarkTicker}</dd>
               </div>
             </dl>
+
+            {hydrated ? (
+              <div className="mt-4 flex items-center gap-2">
+                <span className={`h-2 w-2 rounded-full ${sourceDot} animate-pulse`} aria-hidden />
+                <span className={`text-[11px] font-medium ${sourceTextColor}`}>
+                  {sourceLabel}
+                </span>
+                {asOfFmt ? (
+                  <span className="text-[11px] text-zinc-600">· refreshed {asOfFmt}</span>
+                ) : null}
+                <span className="text-[11px] text-zinc-700">
+                  · auto-updates every {Math.round(pollIntervalMs / 1000)}s
+                </span>
+              </div>
+            ) : null}
           </div>
           <div className="grid w-full max-w-md grid-cols-2 gap-3 sm:grid-cols-3 lg:shrink-0">
             <div className="rounded border border-zinc-700/80 bg-zinc-900/40 px-3 py-2.5">

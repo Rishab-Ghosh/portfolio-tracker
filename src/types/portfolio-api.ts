@@ -22,6 +22,9 @@ export type BlotterRow = {
 export type PortfolioApiResponse = {
   ok: boolean;
   warning?: string;
+  /** "live" = Finnhub quotes returned; "close" = last daily close; "offline" = no API key */
+  dataSource: "live" | "close" | "offline";
+  asOf: string; // ISO timestamp of when the server built this response
   inceptionDate: string;
   startingNav: number;
   benchmarkTicker: string;

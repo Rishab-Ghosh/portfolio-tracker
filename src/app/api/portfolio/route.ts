@@ -124,6 +124,8 @@ export async function GET() {
     return NextResponse.json({
       ok: false,
       warning: w || undefined,
+      dataSource: "offline" as const,
+      asOf: new Date().toISOString(),
       inceptionDate: inception,
       startingNav,
       benchmarkTicker: bench,
@@ -226,9 +228,19 @@ export async function GET() {
     benchNav: book.benchNav[i] ?? 0,
   }));
 
+  // Derive overall data source from the equity positions (exclude CASH).
+  const equityRows = blotter.filter((r) => r.ticker !== "CASH");
+  const overallSource: PortfolioApiResponse["dataSource"] = !finnhubConfigured()
+    ? "offline"
+    : equityRows.some((r) => r.priceSource === "live")
+      ? "live"
+      : "close";
+
   const body: PortfolioApiResponse = {
     ok: true,
     warning: warnings.length ? warnings.join(" · ") : undefined,
+    dataSource: overallSource,
+    asOf: new Date().toISOString(),
     inceptionDate: inception,
     startingNav,
     benchmarkTicker: bench,
