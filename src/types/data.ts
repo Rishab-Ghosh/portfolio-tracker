@@ -19,7 +19,7 @@ export type PositionStatus =
   | "under review"
   | "broken";
 
-export type PositionSide = "long" | "short";
+export type PositionSide = "long" | "short" | "neutral";
 
 /** Legacy static shape; trade desk uses `data/positions.json` + `/api/portfolio`. */
 export interface Position {
@@ -56,6 +56,7 @@ export type ScenarioMonitorStatus =
 
 export interface ScenarioCard {
   name: string;
+  probability: number;
   description: string;
   confirmingSignals: string;
   whatWouldHappen: string;
@@ -65,14 +66,23 @@ export interface ScenarioCard {
 }
 
 export interface Scenarios {
-  bull: ScenarioCard;
   base: ScenarioCard;
-  bear: ScenarioCard;
+  delay: ScenarioCard;
+  severity: ScenarioCard;
+  blackswan: ScenarioCard;
 }
 
-export interface FalsificationItem {
+export type KillSwitchStatus = "green" | "yellow" | "red";
+
+export interface KillSwitch {
+  id: string;
   condition: string;
-  detail: string;
+  monitoringData: string;
+  action: string;
+  appliesTo: string;
+  status: KillSwitchStatus;
+  currentValue: string;
+  threshold: string;
 }
 
 export interface SiteMeta {
@@ -92,7 +102,7 @@ export interface MarketConfig {
   benchmarkTicker: string;
   inceptionDate: string;
   startingNav: number;
-  currentLean: "bull" | "base" | "bear";
+  currentLean: "base" | "delay" | "severity" | "blackswan";
   pollIntervalSeconds: number;
   offlineBenchmarkPrice?: number;
 }

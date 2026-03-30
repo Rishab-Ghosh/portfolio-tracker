@@ -1,29 +1,42 @@
 {
-  "bull": {
-    "name": "Upside",
-    "description": "Urban robotaxi networks clear internal unit-economic hurdles; additional metros widen driverless domains without sustained rollback; personal-auto loss costs show durable frequency improvement in carrier data.",
-    "confirmingSignals": "Sequential permit expansion; rising autonomous passenger-mile share without repeated safety regressions; management commentary linking frequency to pool mix.",
-    "whatWouldHappen": "Enabler and operator economics re-rate; personal-auto shorts work but require timing discipline; narrow OEM longs without fleet leverage lag.",
-    "benefits": "Long: NVDA, MBLY. Hedged short: ALL (if frequency story coheres).",
-    "hurt": "Long legacy OEM without fleet optionality; late-cycle personal-auto longs.",
-    "monitorStatus": "monitoring"
-  },
   "base": {
-    "name": "Base",
-    "description": "Deployment advances in steps with pauses after incidents; liability and insurance terms adjust slowly; urban ownership drifts down while suburbs lag.",
-    "confirmingSignals": "Regulatory advance-and-pause; mixed carrier results; residual pressure concentrated in dense markets.",
-    "whatWouldHappen": "Thesis remains operative but path-dependent; sizing favors liquid enablers over concentrated operator risk; shorts sized for earnings noise.",
-    "benefits": "Liquid compute / stack exposure; diversified platforms with non-AV earnings.",
-    "hurt": "Illiquid single-operator bets; oversized thematic shorts into volatility.",
+    "name": "AV on 5yr timeline",
+    "probability": 40,
+    "description": "Waymo reaches 1M+ weekly rides. AEB frequency decline becomes sell-side consensus. PGR re-rates lower. LKQ revenue visibly declining.",
+    "confirmingSignals": "Waymo expands to 20+ cities; sequential ride growth; PGR combined ratio improvement attributed to frequency; CCC repairable claims down >15% YoY.",
+    "whatWouldHappen": "GOOGL re-rates as Waymo value becomes visible. NVDA automotive segment accelerates. PGR and LKQ shorts work. CPRT hedge flat to slight drag.",
+    "benefits": "GOOGL, NVDA on adoption pace; PGR/LKQ shorts on frequency decline.",
+    "hurt": "CPRT (fewer total losses if frequency declines faster than severity rises).",
     "monitorStatus": "base case"
   },
-  "bear": {
-    "name": "Downside",
-    "description": "Safety or political backlash narrows domains for an extended period; carriers retrench without frequency clarity; OEMs defer city autonomy and consolidate on driver-assist.",
-    "confirmingSignals": "Permit pullbacks or moratoria; severity-led narratives without offsetting frequency data; capex cuts to urban L4 programs.",
-    "whatWouldHappen": "Narrow autonomy longs underperform; personal-auto writers may stabilize; diversified megacaps outperform single-theme names.",
-    "benefits": "Personal lines with pricing power; cash-generative diversified incumbents.",
-    "hurt": "Pure-play autonomy longs; aggressive personal-auto shorts into mean reversion.",
+  "delay": {
+    "name": "8–10yr adoption",
+    "probability": 35,
+    "description": "No fatal incident but permitting bottlenecks, consumer skepticism, and slow city-by-city expansion delay widespread adoption. GOOGL and NVDA grow on core businesses.",
+    "confirmingSignals": "Waymo city expansion slows; consumer AV trust stagnant (AAA survey); city permit timelines extending; frequency decline not yet visible in carrier data.",
+    "whatWouldHappen": "Longs +10–20% on core business growth. PGR/LKQ option premiums expire worthless (lose $20k premium). CPRT flat. Net portfolio modestly positive on longs, drag from short book.",
+    "benefits": "GOOGL core (Search, Cloud, YouTube); NVDA datacenter AI floor.",
+    "hurt": "PGR and LKQ shorts — option premium lost. Net drag from short book.",
+    "monitorStatus": "monitoring"
+  },
+  "severity": {
+    "name": "Severity dominates frequency",
+    "probability": 15,
+    "description": "Repair cost inflation runs >8% annually. Heavier EVs and ADAS sensor costs push total claim costs up even as accidents decline. Insurance premiums rise, not fall.",
+    "confirmingSignals": "CCC severity >8% YoY for 4+ quarters; PGR combined ratio stable or improving; LKQ revenue per claim rising faster than volume declines.",
+    "whatWouldHappen": "PGR/LKQ shorts lose (capped at option premium). CPRT hedge gains significantly. GOOGL/NVDA longs unaffected. Portfolio net roughly flat on CPRT gains vs short losses.",
+    "benefits": "CPRT (more total losses = more auction volume). KS-1 triggered: proceeds reallocate to CPRT.",
+    "hurt": "PGR short thesis delayed. LKQ short partially offset by per-claim severity uplift.",
+    "monitorStatus": "tail risk"
+  },
+  "blackswan": {
+    "name": "Fatal AV incident / moratorium",
+    "probability": 10,
+    "description": "A catastrophic AV incident triggers NHTSA/congressional moratorium. All AV expansion paused 12–24 months. Similar to Cruise shutdown in 2023.",
+    "confirmingSignals": "NHTSA emergency order; Waymo operational pause; congressional hearings initiated; Alphabet discloses Waymo operational halt.",
+    "whatWouldHappen": "GOOGL gives back 10–15% (Waymo write-down). NVDA modestly lower but retained on datacenter. PGR/LKQ shorts gain modestly. KS-3 triggered: close GOOGL/PGR/LKQ; retain NVDA and CPRT.",
+    "benefits": "PGR/LKQ shorts (AV pause = premium pool stability narrative). Cash reserve.",
+    "hurt": "GOOGL (Waymo component write-down). Entire AV-specific thesis paused.",
     "monitorStatus": "tail risk"
   }
 }

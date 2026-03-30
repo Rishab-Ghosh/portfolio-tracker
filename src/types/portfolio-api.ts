@@ -3,7 +3,7 @@ import type { PositionStatus } from "@/types/data";
 export type BlotterRow = {
   ticker: string;
   company: string;
-  side: "long" | "short";
+  side: "long" | "short" | "neutral";
   category: string;
   weightPct: number;
   entryDate: string;
@@ -25,7 +25,7 @@ export type PortfolioApiResponse = {
   inceptionDate: string;
   startingNav: number;
   benchmarkTicker: string;
-  currentLean: "bull" | "base" | "bear";
+  currentLean: "base" | "delay" | "severity" | "blackswan";
   header: {
     currentNav: number;
     totalReturnPct: number;

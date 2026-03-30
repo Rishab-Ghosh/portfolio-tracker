@@ -1,44 +1,58 @@
 [
   {
-    "name": "Urban AV passenger-miles share",
-    "signal": "Internal log; Q1 baseline pending",
+    "name": "Waymo weekly paid rides",
+    "signal": "Q1 2026 baseline pending — 400K+ reported prior quarter",
     "direction": "up",
-    "interpretation": "Slope in target metros still primary timing read.",
-    "status": "Watch"
+    "interpretation": "Primary timing signal for GOOGL thesis. Target: 1M by end 2026.",
+    "status": "Tracking"
   },
   {
-    "name": "ADS vs. human frequency",
-    "signal": "Cohort refresh outstanding",
-    "direction": "na",
-    "interpretation": "Liability thesis sensitive to comparable data.",
-    "status": "Data gap"
-  },
-  {
-    "name": "Personal-auto combined ratio",
-    "signal": "Last sector round mixed",
-    "direction": "flat",
-    "interpretation": "Short leg needs multi-quarter smoothing.",
-    "status": "Neutral"
-  },
-  {
-    "name": "Regulatory milestones",
-    "signal": "Net expansion last quarter",
+    "name": "NVDA Automotive revenue",
+    "signal": "Quarterly earnings — growing YoY; DRIVE Orin/Thor design wins expanding",
     "direction": "up",
-    "interpretation": "Domains widening supports deployment path.",
+    "interpretation": "Direct AV compute demand signal. Scales linearly with fleet deployment.",
     "status": "Supportive"
   },
   {
-    "name": "Used vehicle residuals",
-    "signal": "Urban split soft vs. national",
+    "name": "CCC repairable claims YoY",
+    "signal": "Down 10.4% through Aug 2025 vs prior year",
     "direction": "down",
-    "interpretation": "Consistent with utilization-shift channel.",
-    "status": "Aligned"
+    "interpretation": "Confirms frequency decline thesis. Directly supports LKQ short.",
+    "status": "Confirmed"
   },
   {
-    "name": "Fleet utilization",
-    "signal": "Sparse operator disclosure",
+    "name": "Average claim severity (CCC/Mitchell)",
+    "signal": "Rising ~2.4x for ADAS vehicles vs non-ADAS",
+    "direction": "up",
+    "interpretation": "Tests KS-1 kill switch. If >8% YoY for 4+ quarters, close PGR short.",
+    "status": "Watch"
+  },
+  {
+    "name": "PGR personal auto combined ratio",
+    "signal": "Monitoring for structural improvement below 95",
     "direction": "flat",
-    "interpretation": "Unit economics remain utilization-first.",
-    "status": "Low visibility"
+    "interpretation": "Short thesis requires deterioration as frequency declines compress pricing power.",
+    "status": "Neutral"
+  },
+  {
+    "name": "AEB fleet penetration (% active US fleet)",
+    "signal": "~30% estimated; rising ~3–4pp annually",
+    "direction": "up",
+    "interpretation": "Structural driver of frequency decline. Confirms multi-year thesis arc.",
+    "status": "On track"
+  },
+  {
+    "name": "CPRT total-loss rate",
+    "signal": "Tracking via CPRT units sold QoQ — pending Q1 2026",
+    "direction": "up",
+    "interpretation": "Rising total-loss rate validates severity hedge thesis for CPRT long.",
+    "status": "Watch"
+  },
+  {
+    "name": "Consumer AV trust (AAA survey)",
+    "signal": "Feb 2026 survey pending — prior year: 53% uncomfortable",
+    "direction": "flat",
+    "interpretation": "Delay scenario indicator. Low trust = headwind for Waymo expansion pace.",
+    "status": "Neutral"
   }
 ]

@@ -1,6 +1,10 @@
 /**
  * Theoretical book: signed USD allocation at inception / inception close = shares.
  * NAV(t) = Σ shares_i × price_i(t) on SPY trading calendar (forward-filled).
+ *
+ * navOffset: because the portfolio mixes long equity and short puts (funded positions),
+ * the sum of signed allocationUsd < startingNav. navOffset = startingNav − Σ(allocationUsd)
+ * is added to every nav point so the chart starts at startingNav on inception day.
  */
 
 export type CandleSeries = { t: number[]; c: number[] };
@@ -8,7 +12,7 @@ export type CandleSeries = { t: number[]; c: number[] };
 export type PortfolioPositionInput = {
   ticker: string;
   company: string;
-  side: "long" | "short";
+  side: "long" | "short" | "neutral";
   category: string;
   allocationUsd: number;
   thesisLine: string;
@@ -71,6 +75,12 @@ export function computeBook(
     shares.set(sym, p.allocationUsd / p0);
   }
 
+  // NAV offset: corrects for the funded-options structure where Σ(allocationUsd) < startingNav.
+  // Longs and neutral positions contribute positively; shorts contribute negatively.
+  // The offset ensures nav[0] = startingNav on inception day.
+  const allocSum = positions.reduce((s, p) => s + p.allocationUsd, 0);
+  const navOffset = startingNav - allocSum;
+
   const dates: string[] = [];
   const nav: number[] = [];
   const benchNav: number[] = [];
@@ -98,7 +108,7 @@ export function computeBook(
 
     const spyC = benchmark.c[i];
     benchNav.push(startingNav * (spyC / spy0));
-    nav.push(n);
+    nav.push(n + navOffset);
   }
 
   if (!dates.length) return null;
@@ -115,7 +125,7 @@ export function computeBook(
     const sym = p.ticker.toUpperCase();
     nLast += (shares.get(sym) ?? 0) * (lastPx[sym] ?? 0);
   }
-  nav[nav.length - 1] = nLast;
+  nav[nav.length - 1] = nLast + navOffset;
 
   const spyQ = latestQuotes[benchU];
   const spyLastClose = benchmark.c[benchmark.c.length - 1];

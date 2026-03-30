@@ -48,7 +48,7 @@ const emptyPayload: PortfolioApiResponse = {
   inceptionDate: "2026-03-27",
   startingNav: 100_000,
   benchmarkTicker: "SPY",
-  currentLean: "base",
+  currentLean: "base" as const,
   header: {
     currentNav: 100_000,
     totalReturnPct: 0,

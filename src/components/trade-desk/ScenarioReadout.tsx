@@ -5,16 +5,17 @@ export function ScenarioReadout({
   currentLean,
 }: {
   scenarios: Scenarios;
-  currentLean: "bull" | "base" | "bear";
+  currentLean: "base" | "delay" | "severity" | "blackswan";
 }) {
   const ordered = [
-    { key: "bull" as const, card: scenarios.bull },
     { key: "base" as const, card: scenarios.base },
-    { key: "bear" as const, card: scenarios.bear },
+    { key: "delay" as const, card: scenarios.delay },
+    { key: "severity" as const, card: scenarios.severity },
+    { key: "blackswan" as const, card: scenarios.blackswan },
   ];
 
   return (
-    <div className="grid gap-2 sm:grid-cols-3">
+    <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
       {ordered.map(({ key, card }) => {
         const active = key === currentLean;
         return (
@@ -36,7 +37,15 @@ export function ScenarioReadout({
                 </span>
               ) : null}
             </div>
-            <p className="mt-2 line-clamp-3 text-[11px] leading-snug text-zinc-500">{card.description}</p>
+            <div className="mt-2 flex items-baseline gap-2">
+              <span className="font-mono text-[15px] font-semibold text-zinc-100">
+                {card.probability}%
+              </span>
+              <span className="text-[10px] text-zinc-600">probability</span>
+            </div>
+            <p className="mt-1.5 line-clamp-3 text-[11px] leading-snug text-zinc-500">
+              {card.description}
+            </p>
             <p className="mt-2 font-mono text-[10px] text-zinc-600">{card.monitorStatus}</p>
           </div>
         );

@@ -1,42 +1,62 @@
 [
   {
-    "ticker": "NVDA",
-    "company": "NVIDIA Corporation",
+    "ticker": "GOOGL",
+    "company": "Alphabet Inc.",
     "side": "long",
-    "category": "AV compute / simulation",
-    "allocationUsd": 35000,
-    "offlinePrice": 142.8,
-    "thesisLine": "Compute and validation load tied to fleet software iteration.",
-    "status": "validated"
-  },
-  {
-    "ticker": "MBLY",
-    "company": "Mobileye Global Inc.",
-    "side": "long",
-    "category": "ADAS / autonomy stack",
-    "allocationUsd": 28000,
-    "offlinePrice": 19.4,
-    "thesisLine": "ADAS monetization ahead of full driverless economics.",
+    "category": "Robotaxi / AV operator",
+    "allocationUsd": 30000,
+    "offlinePrice": 168.0,
+    "thesisLine": "Waymo: only scaled L4 operator globally; Waymo option priced at zero inside Alphabet.",
     "status": "tracking"
   },
   {
-    "ticker": "ALL",
-    "company": "Allstate Corporation",
-    "side": "short",
-    "category": "Personal lines P&C",
-    "allocationUsd": -17000,
-    "offlinePrice": 172.1,
-    "thesisLine": "Gradual pressure on personal-auto pool economics.",
-    "status": "under review"
+    "ticker": "NVDA",
+    "company": "NVIDIA Corporation",
+    "side": "long",
+    "category": "AV compute / picks-and-shovels",
+    "allocationUsd": 25000,
+    "offlinePrice": 108.0,
+    "thesisLine": "Sells compute to every AV player; DRIVE Automotive revenue scales linearly with fleet deployment.",
+    "status": "tracking"
   },
   {
-    "ticker": "F",
-    "company": "Ford Motor Company",
+    "ticker": "PGR",
+    "company": "Progressive Corporation",
+    "side": "short",
+    "category": "Personal auto insurance",
+    "allocationUsd": -10000,
+    "offlinePrice": 270.0,
+    "thesisLine": "ADAS frequency decline will structurally contract the $400B personal-auto premium pool.",
+    "status": "tracking"
+  },
+  {
+    "ticker": "LKQ",
+    "company": "LKQ Corporation",
+    "side": "short",
+    "category": "Collision parts / aftermarket",
+    "allocationUsd": -10000,
+    "offlinePrice": 45.0,
+    "thesisLine": "Revenue mechanically linked to crash volume; CCC claims already down 10.4% YoY.",
+    "status": "tracking"
+  },
+  {
+    "ticker": "CPRT",
+    "company": "Copart Inc.",
     "side": "long",
-    "category": "Legacy OEM transition",
-    "allocationUsd": 54000,
-    "offlinePrice": 10.88,
-    "thesisLine": "Legacy pivot vs. fleet-first names; sized as residual book risk.",
-    "status": "broken"
+    "category": "Auto salvage / severity hedge",
+    "allocationUsd": 15000,
+    "offlinePrice": 58.0,
+    "thesisLine": "Severity hedge: ADAS repair costs force more total-loss declarations, boosting Copart auctions.",
+    "status": "tracking"
+  },
+  {
+    "ticker": "CASH",
+    "company": "Cash Reserve",
+    "side": "neutral",
+    "category": "Dry powder / T-bills",
+    "allocationUsd": 10000,
+    "offlinePrice": 1.0,
+    "thesisLine": "Dry powder for kill-switch reallocations or high-conviction AV opportunity.",
+    "status": "tracking"
   }
 ]

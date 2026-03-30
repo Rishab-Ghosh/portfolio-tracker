@@ -1,28 +1,54 @@
 {
   "items": [
     {
-      "condition": "Regulatory adoption stalls materially",
-      "detail": "Sustained shrinkage of permitted domains without replacement pathways implies the urban-first scaling path or timeline is wrong."
+      "id": "KS-1",
+      "condition": "CCC severity inflation exceeds frequency decline for 4+ consecutive quarters",
+      "monitoringData": "CCC Intelligent Solutions quarterly reports",
+      "action": "Close PGR short entirely; reallocate proceeds to CPRT",
+      "appliesTo": "PGR short",
+      "status": "green",
+      "currentValue": "Monitoring — Q1 2026 data pending",
+      "threshold": "4 consecutive quarters: severity growth > frequency decline"
     },
     {
-      "condition": "AV incident profile undermines trust",
-      "detail": "A persistent pattern of serious incidents with restrictive political response caps deployment regardless of engineering progress."
+      "id": "KS-2",
+      "condition": "Waymo weekly rides plateau or decline for 2+ consecutive quarters",
+      "monitoringData": "Alphabet quarterly earnings; third-party estimates (CNBC, Wedbush)",
+      "action": "Reduce GOOGL from 30% to 15%; move 15% to cash",
+      "appliesTo": "GOOGL long",
+      "status": "green",
+      "currentValue": "400K+ weekly rides — not at plateau",
+      "threshold": "2 consecutive quarters of flat or declining weekly rides"
     },
     {
-      "condition": "Liability shift fails to impair legacy auto insurance economics",
-      "detail": "Durable combined-ratio improvement in personal auto without a frequency narrative, while AV miles rise, weakens the short-exposure leg."
+      "id": "KS-3",
+      "condition": "Fatal AV incident triggers federal investigation or operational moratorium",
+      "monitoringData": "NHTSA press releases; news monitoring",
+      "action": "Close GOOGL (Waymo component), PGR short, LKQ short; retain NVDA on datacenter thesis; retain CPRT",
+      "appliesTo": "Whole portfolio",
+      "status": "green",
+      "currentValue": "No active federal investigation",
+      "threshold": "NHTSA operational halt or congressional moratorium issued"
     },
     {
-      "condition": "Private ownership remains resilient in urban markets",
-      "detail": "Broad residual strength and trip data that show limited substitution undermine the utilization and depreciation channel."
+      "id": "KS-4",
+      "condition": "LKQ repairable claim volumes stabilize or rebound for 2+ consecutive quarters",
+      "monitoringData": "CCC repairable claims data; LKQ quarterly earnings",
+      "action": "Close LKQ short",
+      "appliesTo": "LKQ short",
+      "status": "green",
+      "currentValue": "Claims down 10.4% YoY through Aug 2025",
+      "threshold": "2 consecutive quarters of flat or rising repairable claims"
     },
     {
-      "condition": "Fleet economics do not scale as expected",
-      "detail": "Utilization and pricing collapse ahead of autonomy-driven cost relief slows the shift from ownership to on-demand miles."
-    },
-    {
-      "condition": "ADS safety persistently trails credible human baselines",
-      "detail": "Comparable data that do not converge on frequency or severity extend liability and adoption timelines materially."
+      "id": "KS-5",
+      "condition": "PGR combined ratio rises above 100 for non-AV reasons (catastrophe losses, reserve development)",
+      "monitoringData": "PGR quarterly earnings; statutory filings",
+      "action": "Cover PGR short — signal is cyclical, not structural",
+      "appliesTo": "PGR short",
+      "status": "green",
+      "currentValue": "Combined ratio sub-100 — monitoring",
+      "threshold": "PGR combined ratio > 100 for non-AV reasons"
     }
   ]
 }

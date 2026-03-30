@@ -9,12 +9,12 @@ import market from "@data/market.json";
 import scenarios from "@data/scenarios.json";
 import site from "@data/site.json";
 import type { DeskKpi } from "@/types/desk-kpi";
-import type { FalsificationItem, MarketConfig, Scenarios } from "@/types/data";
+import type { KillSwitch, MarketConfig, Scenarios } from "@/types/data";
 
 const scenariosData = scenarios as Scenarios;
 const kpisData = kpis as DeskKpi[];
 const marketData = market as MarketConfig;
-const falsificationItems = falsification.items as FalsificationItem[];
+const killSwitches = falsification.items as KillSwitch[];
 
 const pollMs = Math.min(
   Math.max((marketData.pollIntervalSeconds ?? 120) * 1000, 60_000),
@@ -26,7 +26,7 @@ const contents = [
   ["blotter", "Blotter"],
   ["scenarios", "Scenarios"],
   ["evidence", "Signals"],
-  ["falsification", "Risks"],
+  ["falsification", "Kill switches"],
 ] as const;
 
 export default function Home() {
@@ -74,8 +74,8 @@ export default function Home() {
           pollIntervalMs={pollMs}
         />
 
-        <Section id="falsification" title="Falsification watch">
-          <ThesisIntegrity items={falsificationItems} />
+        <Section id="falsification" title="Kill switches">
+          <ThesisIntegrity items={killSwitches} />
         </Section>
 
         <SiteFooter line={footer.line} githubUrl={footer.githubUrl} disclaimer={footer.disclaimer} />

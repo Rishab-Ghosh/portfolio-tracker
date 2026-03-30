@@ -19,8 +19,8 @@ const FETCH_GAP_MS = 110;
 
 type PosRow = PortfolioPositionInput;
 
-function leanFromMarket(v: string): "bull" | "base" | "bear" {
-  if (v === "bull" || v === "bear") return v;
+function leanFromMarket(v: string): "base" | "delay" | "severity" | "blackswan" {
+  if (v === "delay" || v === "severity" || v === "blackswan") return v;
   return "base";
 }
 
@@ -46,7 +46,10 @@ export async function GET() {
     offlinePrice: p.offlinePrice,
   }));
 
-  const tickers = [...new Set(inputs.map((p) => p.ticker.toUpperCase()))];
+  // Exclude CASH from Finnhub fetches — it has a fixed price of $1.
+  const tickers = [...new Set(
+    inputs.filter((p) => p.ticker.toUpperCase() !== "CASH").map((p) => p.ticker.toUpperCase()),
+  )];
   const warnings: string[] = [];
 
   async function loadCandles(symbol: string, offlineFallback: number): Promise<CandleSeries> {
@@ -69,6 +72,10 @@ export async function GET() {
   await sleep(FETCH_GAP_MS);
 
   const symbolSeries: Record<string, CandleSeries> = {};
+
+  // CASH: constant price of $1 — never fetched from Finnhub.
+  symbolSeries["CASH"] = { t: [inceptionSec, nowSec], c: [1, 1] };
+
   for (const t of tickers) {
     const pos = inputs.find((p) => p.ticker.toUpperCase() === t);
     const off = pos?.offlinePrice ?? 100;
@@ -80,6 +87,8 @@ export async function GET() {
   for (const sym of [bench, ...tickers]) {
     latestQuotes[sym] = null;
   }
+  // CASH quote is always $1.
+  latestQuotes["CASH"] = 1;
 
   if (finnhubConfigured()) {
     for (const sym of [bench, ...tickers]) {
@@ -207,7 +216,7 @@ export async function GET() {
       contributionPct,
       thesisLine: p.thesisLine,
       status: p.status,
-      priceSource: priceSourceFor(sym),
+      priceSource: sym === "CASH" ? "offline" : priceSourceFor(sym),
     };
   });
 
