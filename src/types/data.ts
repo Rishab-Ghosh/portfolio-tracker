@@ -4,7 +4,7 @@ export interface ThesisDriver {
 }
 
 export interface ThesisData {
-  /** Single-sentence anchor; edit in data/thesis.json */
+  /** Legacy editorial shape (optional JSON); trade desk uses `data/site.json` + blotter. */
   oneLine: string;
   coreThesis: string;
   drivers: ThesisDriver[];
@@ -21,7 +21,7 @@ export type PositionStatus =
 
 export type PositionSide = "long" | "short";
 
-/** Static sleeve definition; live prices come from /api/quotes. */
+/** Legacy static shape; trade desk uses `data/positions.json` + `/api/portfolio`. */
 export interface Position {
   name: string;
   ticker: string;
@@ -70,15 +70,6 @@ export interface Scenarios {
   bear: ScenarioCard;
 }
 
-export interface JournalEntry {
-  date: string;
-  title: string;
-  whatChanged: string;
-  implication: string;
-  action: string;
-  tags?: string[];
-}
-
 export interface FalsificationItem {
   condition: string;
   detail: string;
@@ -96,8 +87,12 @@ export interface SiteMeta {
   leadKpis: string;
 }
 
-/** `data/market.json` — benchmark and quote poll cadence */
+/** `data/market.json` — benchmark, inception book, poll cadence */
 export interface MarketConfig {
   benchmarkTicker: string;
+  inceptionDate: string;
+  startingNav: number;
+  currentLean: "bull" | "base" | "bear";
   pollIntervalSeconds: number;
+  offlineBenchmarkPrice?: number;
 }

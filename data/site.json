@@ -1,9 +1,6 @@
 {
   "title": "Live Thesis Tracker",
-  "subtitle": "Investment monitoring — five-year urban autonomy thesis",
-  "intro": "Working record of the claim, the evidence watched, and the conditions that would change the view. Equity marks are secondary: they discipline timing and sizing, not the core argument.",
-  "launched": "2025-08-07",
-  "thesisActive": true,
-  "leadPositions": "Names implement the thesis in section I; they are not offered as a diversified portfolio. Read state and each line’s rationale before prices. Refreshed quotes are a check, not the thesis.",
-  "leadKpis": "Observables outside listed prices. Entries are manual; the schema can accept feeds later without restructuring the page."
+  "subtitle": "Trade Desk View",
+  "tagline": "Theoretical book — urban autonomy transition. $100k inception 27 Mar 2026.",
+  "githubUrl": "https://github.com/your-username/live-thesis-tracker"
 }

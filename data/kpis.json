@@ -1,50 +1,44 @@
 [
   {
-    "name": "Autonomous urban passenger-miles share",
-    "whyItMatters": "Direct check on city-first deployment timing.",
-    "sourceType": "manual",
-    "currentStatus": "Internal log from operator disclosures and third-party estimates; Q1 2026 baseline pending.",
-    "interpretation": "Faster share gain in target metros supports operator scale economics; stagnation after permit expansion suggests unit-economics or execution constraints.",
-    "trend": "up"
+    "name": "Urban AV passenger-miles share",
+    "signal": "Internal log; Q1 baseline pending",
+    "direction": "up",
+    "interpretation": "Slope in target metros still primary timing read.",
+    "status": "Watch"
   },
   {
-    "name": "Accident frequency — ADS vs. human baseline",
-    "whyItMatters": "Grounds liability and insurance assumptions.",
-    "sourceType": "manual",
-    "currentStatus": "Awaiting comparable cohort refresh; no single public series is sufficient.",
-    "interpretation": "Persistent ADS inferiority on like-for-like exposure extends adoption and liability timelines; convergence supports faster pool repricing.",
-    "trend": "n/a"
+    "name": "ADS vs. human frequency",
+    "signal": "Cohort refresh outstanding",
+    "direction": "na",
+    "interpretation": "Liability thesis sensitive to comparable data.",
+    "status": "Data gap"
   },
   {
-    "name": "Personal-auto combined ratio trajectory",
-    "whyItMatters": "Maps technology and loss-cost trends to P&C results.",
-    "sourceType": "manual",
-    "currentStatus": "Reviewed each sector earnings round; weather and severity noise require multi-quarter smoothing.",
-    "interpretation": "Structural improvement without a frequency story while AV miles rise would weaken the short-exposure leg; sustained pressure with rising miles fits the thesis.",
-    "trend": "flat"
+    "name": "Personal-auto combined ratio",
+    "signal": "Last sector round mixed",
+    "direction": "flat",
+    "interpretation": "Short leg needs multi-quarter smoothing.",
+    "status": "Neutral"
   },
   {
     "name": "Regulatory milestones",
-    "whyItMatters": "Governance often caps domain before engineering.",
-    "sourceType": "manual",
-    "currentStatus": "Checklist: permits granted, expansions, suspensions, incident responses (updated quarterly).",
-    "interpretation": "Net wider domains and faster recovery after incidents support deployment; repeated retrenchment invalidates linear scaling.",
-    "trend": "up"
+    "signal": "Net expansion last quarter",
+    "direction": "up",
+    "interpretation": "Domains widening supports deployment path.",
+    "status": "Supportive"
   },
   {
-    "name": "Used passenger vehicle residuals",
-    "whyItMatters": "Proxy for ownership vs. on-demand substitution.",
-    "sourceType": "manual",
-    "currentStatus": "Wholesale index with urban vs. national splits; watchlist only until next print.",
-    "interpretation": "Sustained softness in relevant segments supports utilization shift; broad strength challenges urban ownership erosion speed.",
-    "trend": "down"
+    "name": "Used vehicle residuals",
+    "signal": "Urban split soft vs. national",
+    "direction": "down",
+    "interpretation": "Consistent with utilization-shift channel.",
+    "status": "Aligned"
   },
   {
-    "name": "Fleet utilization economics",
-    "whyItMatters": "Autonomous ride-hail is utilization-first.",
-    "sourceType": "manual",
-    "currentStatus": "Operator KPIs where disclosed; otherwise inferred from trip and fleet proxies.",
-    "interpretation": "Rising utilization without destructive pricing supports the base path; flat utilization with discounting suggests oversupply.",
-    "trend": "flat"
+    "name": "Fleet utilization",
+    "signal": "Sparse operator disclosure",
+    "direction": "flat",
+    "interpretation": "Unit economics remain utilization-first.",
+    "status": "Low visibility"
   }
 ]

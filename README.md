@@ -1,14 +1,14 @@
 # Live Thesis Tracker
 
-**Investment monitoring dashboard**—a hosted appendix to a five-year thesis on autonomous passenger mobility in major U.S. cities. It is structured so a reviewer can quickly see: **thesis**, **positions**, **live price evidence**, **scenario posture**, **non-price KPIs**, **dated updates**, and **what would prove the view wrong**.
+**Trade-desk style monitor** for a **theoretical $100,000 book** incepted **27 Mar 2026**, benchmarked to **SPY** (or the ticker in `data/market.json`). The UI shows NAV, an equity curve (portfolio vs benchmark index level), a position blotter, scenario readout, compact thesis signals, and falsification conditions.
 
-Not a retail trading UI. No auth, no database.
+Not a live brokerage account. No auth, no database.
 
 ## Tech stack
 
-- **Next.js** (App Router) + **TypeScript** + **Tailwind CSS** v4
-- **Finnhub** quotes via a **server-only** route (`GET /api/quotes`); API key stays off the client
-- Static **JSON** under `data/` for all editorial content; **`src/types/data.ts`** describes the expected JSON shapes
+- **Next.js** (App Router) + **TypeScript** + **Tailwind CSS** v4 + **Recharts** (equity curve)
+- **Finnhub** on the server (`GET /api/portfolio`): daily candles from inception + latest quotes; API key never sent to the browser
+- Static **JSON** under `data/`; **`src/types/data.ts`**, **`src/types/portfolio-api.ts`**, **`src/types/desk-kpi.ts`** describe shapes
 
 ## Scripts
 
@@ -28,21 +28,19 @@ Not a retail trading UI. No auth, no database.
    npm install
    ```
 
-2. **Environment (optional, for live prices)**
+2. **Environment (optional, for live marks)**
 
    ```bash
    cp .env.example .env.local
    ```
 
-   Set `FINNHUB_API_KEY` in `.env.local` ([register at Finnhub](https://finnhub.io/register)). Without it, the app still runs using **`offlineQuote`** in `data/positions.json`.
+   Set `FINNHUB_API_KEY` in `.env.local` ([register at Finnhub](https://finnhub.io/register)). Without it, the portfolio engine uses **`offlinePrice`** per position and **`offlineBenchmarkPrice`** in `data/market.json` (flat synthetic series + same marks).
 
 3. **Start**
 
    ```bash
    npm run dev
    ```
-
-   Open **http://localhost:3000**. All sections render on the home page (single route `/`).
 
 4. **Sanity check**
 
@@ -55,84 +53,56 @@ Not a retail trading UI. No auth, no database.
 
 | Variable | Required | Purpose |
 |----------|----------|---------|
-| **`FINNHUB_API_KEY`** | No (omit = offline prices only) | Finnhub token; **server-only** in `src/lib/finnhub.ts` and `src/app/api/quotes/route.ts`. Never sent to the browser. |
+| **`FINNHUB_API_KEY`** | No | Server-only in `src/lib/finnhub.ts` and `src/app/api/portfolio/route.ts`. |
 
-See **`.env.example`** at the repo root. On Vercel: **Settings → Environment Variables**.
+## Portfolio engine (summary)
 
-### API response shape (client)
+- **Inception**: `data/market.json` → `inceptionDate`, `startingNav` ($100k).
+- **Positions**: `data/positions.json` → signed **`allocationUsd`** (shorts negative). Shares at inception = `allocationUsd / first valid close on/before first SPY session ≥ inception` (with **`offlinePrice`** fallback).
+- **Marking**: Walk **SPY** daily calendar; each stock is **forward-filled** on that calendar. Last point is overwritten with **live quotes** when Finnhub returns them.
+- **Benchmark line**: Same SPY series scaled so benchmark **NAV** = starting NAV × (SPY\_t / SPY\_inception); not a held position in the book.
+- **P&L / stats**: Unrealized per line = `marketValue − allocationUsd`; contribution % vs **total** portfolio P&L; gross/net exposure as % of current NAV from absolute and signed market values.
 
-`GET /api/quotes` returns JSON defined in **`src/types/quote-api.ts`**: `ok`, `updatedAt`, `benchmarkTicker`, optional `warning`, and `rows` with **`last`**, **`absChange`**, **`pctReturn`**, **`excessVsBench`**, **`source`** (`live` \| `offline` \| `unavailable`). Raw vendor payloads are not exposed.
+## API: `GET /api/portfolio`
 
-## Project structure
+Returns **`PortfolioApiResponse`** (`src/types/portfolio-api.ts`): `ok`, optional `warning`, inception fields, `header` (NAV, returns, alpha, day P&L), `stats` (gross/net exposure %, position count), `series` (`date`, `nav`, `benchNav`), `positions` (blotter rows). On severe failure, `ok: false` with empty series/positions and a warning string.
+
+## Project structure (high level)
 
 ```
-├── .env.example
-├── README.md
-├── data/                    # Edit content here (JSON)
+├── data/
 │   ├── site.json
-│   ├── thesis.json
-│   ├── positions.json
-│   ├── market.json
+│   ├── positions.json      # allocationUsd, thesisLine, status, offlinePrice, …
+│   ├── market.json         # benchmark, inception, startingNav, currentLean, poll
 │   ├── scenarios.json
-│   ├── kpis.json
-│   ├── journal.json
+│   ├── kpis.json           # compact desk KPI rows
 │   ├── falsification.json
 │   └── footer.json
-├── public/                  # Static assets (optional; empty by default)
 ├── src/
-│   ├── app/
-│   │   ├── api/quotes/route.ts
-│   │   ├── globals.css
-│   │   ├── layout.tsx
-│   │   └── page.tsx         # Single page: all sections
-│   ├── components/          # UI blocks
-│   ├── lib/
-│   │   ├── finnhub.ts       # Server quote + candle fetch
-│   │   ├── position-metrics.ts
-│   │   └── quote-response.ts
-│   └── types/
-│       ├── data.ts          # JSON schema for editors
-│       └── quote-api.ts     # Public quote API contract
-├── next.config.ts
-├── package.json
-├── postcss.config.mjs
-├── tsconfig.json
-└── eslint.config.mjs
+│   ├── app/api/portfolio/route.ts
+│   ├── lib/finnhub.ts
+│   ├── lib/portfolio-engine.ts
+│   └── components/trade-desk/
 ```
 
 ## Where to edit content
 
 | File | What to change |
 |------|----------------|
-| `data/site.json` | Title, subtitle, intro, **launched**, **thesisActive**, **leadPositions**, **leadKpis** |
-| `data/thesis.json` | **oneLine**, **coreThesis**, **drivers**, **winners**, **losers**, **whyMatters** |
-| `data/positions.json` | Names, tickers, side, sleeve, entry, **offlineQuote**, thesis line, **status** |
-| `data/market.json` | **benchmarkTicker**, **pollIntervalSeconds** (60–300) |
-| `data/scenarios.json` | **bull** / **base** / **bear** objects: **name**, **description**, **confirmingSignals**, **whatWouldHappen**, **benefits**, **hurt**, **monitorStatus** |
-| `data/kpis.json` | **name**, **whyItMatters**, **sourceType** (`manual` \| `api`), **currentStatus**, **interpretation**, **trend** (`up` \| `down` \| `flat` \| `n/a`) |
-| `data/journal.json` | Entries: **date**, **title**, **whatChanged**, **implication**, **action**, optional **tags** |
-| `data/falsification.json` | **items[]**: **condition**, **detail** |
+| `data/site.json` | **title**, **subtitle**, **tagline** |
+| `data/positions.json` | **allocationUsd** (signed), **ticker**, **side**, **category**, **offlinePrice**, **thesisLine**, **status** |
+| `data/market.json` | **benchmarkTicker**, **inceptionDate**, **startingNav**, **currentLean** (`bull` \| `base` \| `bear`), **pollIntervalSeconds**, **offlineBenchmarkPrice** |
+| `data/scenarios.json` | **bull** / **base** / **bear** cards |
+| `data/kpis.json` | **name**, **signal**, **direction** (`up` \| `down` \| `flat` \| `na`), **interpretation**, **status** |
+| `data/falsification.json` | **items[]** |
 | `data/footer.json` | **line**, **githubUrl**, **disclaimer** |
 
-**Enums** (must match `src/types/data.ts`): position **status** — `tracking`, `validated`, `under review`, `broken`. Scenario **monitorStatus** — `leading`, `base case`, `monitoring`, `tail risk`.
-
-## If live quotes fail
-
-- Confirm `FINNHUB_API_KEY` in `.env.local` or Vercel.
-- Finnhub free tier is **rate-limited**; the UI polls every **60–300s** (see `data/market.json`).
-- Partial failures set **`warning`** on the API response and use **`offlineQuote`** where needed.
-
-## Market data behavior
-
-- **Last** and benchmark use Finnhub **quote**; benchmark **history** uses **daily candles** for since-open excess.
-- **Excess vs benchmark** = position return since entry minus benchmark return over the same window (not an alpha estimate).
-- **429** from Finnhub: one automatic retry; then graceful degradation.
+Position **status** (badges): `tracking`, `validated`, `under review`, `broken`.
 
 ## Deploy to Vercel
 
-1. Import the GitHub repo.
-2. Framework **Next.js**, default build command.
-3. Set **`FINNHUB_API_KEY`** if you want live marks.
+1. Import the repo; framework **Next.js**.
+2. Set **`FINNHUB_API_KEY`** for live historical + last marks.
 
 ## Disclaimer
 

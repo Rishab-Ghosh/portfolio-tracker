@@ -1,46 +1,42 @@
 [
   {
-    "name": "NVIDIA Corporation",
     "ticker": "NVDA",
+    "company": "NVIDIA Corporation",
     "side": "long",
     "category": "AV compute / simulation",
-    "entryDate": "2024-09-12",
-    "entryPrice": 116.5,
-    "offlineQuote": 142.8,
-    "thesisSummary": "Training, sim, and in-vehicle inference load rises with iteration on fleet software and domain expansion; validation work is recurring, not one-off.",
+    "allocationUsd": 35000,
+    "offlinePrice": 142.8,
+    "thesisLine": "Compute and validation load tied to fleet software iteration.",
     "status": "validated"
   },
   {
-    "name": "Mobileye Global Inc.",
     "ticker": "MBLY",
+    "company": "Mobileye Global Inc.",
     "side": "long",
     "category": "ADAS / autonomy stack",
-    "entryDate": "2024-11-03",
-    "entryPrice": 17.2,
-    "offlineQuote": 19.4,
-    "thesisSummary": "Roadmap credibility and regulatory visibility support REM and L2++ monetization; content per vehicle scales before full driverless economics.",
+    "allocationUsd": 28000,
+    "offlinePrice": 19.4,
+    "thesisLine": "ADAS monetization ahead of full driverless economics.",
     "status": "tracking"
   },
   {
-    "name": "Allstate Corporation",
     "ticker": "ALL",
+    "company": "Allstate Corporation",
     "side": "short",
     "category": "Personal lines P&C",
-    "entryDate": "2025-01-15",
-    "entryPrice": 168.4,
-    "offlineQuote": 172.1,
-    "thesisSummary": "Short predicated on gradual pressure on personal-auto economics, not a single quarter; severity and reserve noise can mask frequency for long stretches.",
+    "allocationUsd": -17000,
+    "offlinePrice": 172.1,
+    "thesisLine": "Gradual pressure on personal-auto pool economics.",
     "status": "under review"
   },
   {
-    "name": "Ford Motor Company",
     "ticker": "F",
+    "company": "Ford Motor Company",
     "side": "long",
     "category": "Legacy OEM transition",
-    "entryDate": "2024-06-20",
-    "entryPrice": 12.05,
-    "offlineQuote": 10.88,
-    "thesisSummary": "Thesis overstated near-term payoff from legacy transformation versus fleet-first and silicon-heavy names; cycle and mix dominated the outcome.",
+    "allocationUsd": 54000,
+    "offlinePrice": 10.88,
+    "thesisLine": "Legacy pivot vs. fleet-first names; sized as residual book risk.",
     "status": "broken"
   }
 ]

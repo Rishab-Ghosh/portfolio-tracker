@@ -1,38 +1,20 @@
-import { Hero } from "@/components/Hero";
-import { KPIMonitor } from "@/components/KPIMonitor";
-import { PositionMonitor } from "@/components/PositionMonitor";
-import { ScenarioFramework } from "@/components/ScenarioFramework";
 import { Section } from "@/components/Section";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ThesisIntegrity } from "@/components/ThesisIntegrity";
-import { ThesisJournal } from "@/components/ThesisJournal";
-import { ThesisOverview } from "@/components/ThesisOverview";
-import site from "@data/site.json";
-import thesis from "@data/thesis.json";
-import positions from "@data/positions.json";
-import kpis from "@data/kpis.json";
-import scenarios from "@data/scenarios.json";
-import journal from "@data/journal.json";
-import falsification from "@data/falsification.json";
+import { TradeDesk } from "@/components/trade-desk/TradeDesk";
 import footer from "@data/footer.json";
+import falsification from "@data/falsification.json";
+import kpis from "@data/kpis.json";
 import market from "@data/market.json";
-import type {
-  JournalEntry,
-  Kpi,
-  MarketConfig,
-  Position,
-  Scenarios,
-  SiteMeta,
-  ThesisData,
-} from "@/types/data";
+import scenarios from "@data/scenarios.json";
+import site from "@data/site.json";
+import type { DeskKpi } from "@/types/desk-kpi";
+import type { FalsificationItem, MarketConfig, Scenarios } from "@/types/data";
 
-const positionsData = positions as Position[];
-const kpisData = kpis as Kpi[];
 const scenariosData = scenarios as Scenarios;
-const journalData = journal as JournalEntry[];
-const siteData = site as SiteMeta;
-const thesisData = thesis as ThesisData;
+const kpisData = kpis as DeskKpi[];
 const marketData = market as MarketConfig;
+const falsificationItems = falsification.items as FalsificationItem[];
 
 const pollMs = Math.min(
   Math.max((marketData.pollIntervalSeconds ?? 120) * 1000, 60_000),
@@ -40,44 +22,41 @@ const pollMs = Math.min(
 );
 
 const contents = [
-  ["thesis-overview", "Thesis"],
-  ["positions", "Positions"],
+  ["chart", "Chart"],
+  ["blotter", "Blotter"],
   ["scenarios", "Scenarios"],
-  ["kpis", "KPIs"],
-  ["journal", "Journal"],
-  ["falsification", "Falsification"],
+  ["evidence", "Signals"],
+  ["falsification", "Risks"],
 ] as const;
 
 export default function Home() {
   return (
     <div className="flex min-h-full flex-1 flex-col bg-[var(--background)]">
       <a
-        href="#thesis-overview"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:border focus:border-zinc-300 focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:text-zinc-900"
+        href="#chart"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:border focus:border-zinc-600 focus:bg-zinc-900 focus:px-3 focus:py-2 focus:text-sm focus:text-zinc-100"
       >
         Skip to content
       </a>
-      <main className="mx-auto w-full max-w-[48rem] flex-1 px-4 pb-16 pt-0 sm:px-8 sm:pb-20 lg:px-0">
-        <Hero site={siteData} />
-
+      <main className="mx-auto w-full max-w-6xl flex-1 px-4 pb-16 pt-6 sm:px-6 sm:pb-20 lg:px-8">
         <nav
-          className="border-b border-zinc-200 py-3.5 sm:py-4"
+          className="mb-8 border-b border-zinc-800 pb-3"
           aria-label="Section links"
         >
-          <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-zinc-500">
+          <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-zinc-600">
             Contents
           </p>
-          <ul className="mt-2.5 flex flex-wrap gap-x-0.5 gap-y-2 text-[13px] leading-snug text-zinc-600">
+          <ul className="mt-2 flex flex-wrap gap-x-1 gap-y-2 text-[12px] text-zinc-500">
             {contents.map(([id, label], i) => (
               <li key={id} className="flex items-center gap-x-1.5">
                 {i > 0 ? (
-                  <span className="select-none text-zinc-300" aria-hidden>
+                  <span className="select-none text-zinc-700" aria-hidden>
                     ·
                   </span>
                 ) : null}
                 <a
                   href={`#${id}`}
-                  className="rounded-sm px-0.5 decoration-zinc-300 underline-offset-[5px] hover:text-zinc-900 hover:underline"
+                  className="rounded-sm px-0.5 decoration-zinc-600 underline-offset-[4px] hover:text-zinc-200 hover:underline"
                 >
                   {label}
                 </a>
@@ -86,37 +65,17 @@ export default function Home() {
           </ul>
         </nav>
 
-        <Section id="thesis-overview" eyebrow="I" title="Thesis">
-          <ThesisOverview thesis={thesisData} />
-        </Section>
+        <TradeDesk
+          siteTitle={site.title}
+          siteSubtitle={site.subtitle}
+          siteTagline={site.tagline}
+          scenarios={scenariosData}
+          kpis={kpisData}
+          pollIntervalMs={pollMs}
+        />
 
-        <Section
-          id="positions"
-          eyebrow="II"
-          title="Position monitor"
-          lead={siteData.leadPositions}
-        >
-          <PositionMonitor
-            positions={positionsData}
-            benchmarkLabel={marketData.benchmarkTicker}
-            pollIntervalMs={pollMs}
-          />
-        </Section>
-
-        <Section id="scenarios" eyebrow="III" title="Scenario monitor">
-          <ScenarioFramework scenarios={scenariosData} />
-        </Section>
-
-        <Section id="kpis" eyebrow="IV" title="KPI monitor" lead={siteData.leadKpis}>
-          <KPIMonitor kpis={kpisData} />
-        </Section>
-
-        <Section id="journal" eyebrow="V" title="Thesis journal">
-          <ThesisJournal entries={journalData} />
-        </Section>
-
-        <Section id="falsification" eyebrow="VI" title="What would prove this wrong">
-          <ThesisIntegrity items={falsification.items} />
+        <Section id="falsification" title="Falsification watch">
+          <ThesisIntegrity items={falsificationItems} />
         </Section>
 
         <SiteFooter line={footer.line} githubUrl={footer.githubUrl} disclaimer={footer.disclaimer} />
