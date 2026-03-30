@@ -7,7 +7,8 @@ import {
   type CandleSeries,
   type PortfolioPositionInput,
 } from "@/lib/portfolio-engine";
-import { fetchDailyCandles, fetchQuote, finnhubConfigured } from "@/lib/finnhub";
+import { fetchQuote, finnhubConfigured } from "@/lib/finnhub";
+import { fetchYfCandles, fetchYfQuote } from "@/lib/yahoo-finance";
 import type { BlotterRow, PortfolioApiResponse } from "@/types/portfolio-api";
 import type { MarketConfig } from "@/types/data";
 
@@ -31,7 +32,6 @@ export async function GET() {
   const startingNav = market.startingNav;
   const bench = market.benchmarkTicker.toUpperCase();
   const inceptionSec = inceptionUnixSec(inception);
-  const nowSec = Math.floor(Date.now() / 1000);
   const fromSec = inceptionSec - 45 * 86_400;
   const offlineBench = market.offlineBenchmarkPrice ?? 400;
 
@@ -46,35 +46,26 @@ export async function GET() {
     offlinePrice: p.offlinePrice,
   }));
 
-  // Exclude CASH from Finnhub fetches — it has a fixed price of $1.
+  // Exclude CASH from market data fetches — fixed price of $1.
   const tickers = [...new Set(
     inputs.filter((p) => p.ticker.toUpperCase() !== "CASH").map((p) => p.ticker.toUpperCase()),
   )];
   const warnings: string[] = [];
 
+  // --- Candles: Yahoo Finance (free, no key required) ---
   async function loadCandles(symbol: string, offlineFallback: number): Promise<CandleSeries> {
-    if (finnhubConfigured()) {
-      const out = await fetchDailyCandles(symbol, fromSec, nowSec);
-      if (out.ok && out.data.t.length > 0) {
-        return { t: out.data.t, c: out.data.c };
-      }
-      warnings.push(
-        !out.ok
-          ? `${symbol}: ${out.kind}`
-          : `${symbol}: no historical candles`,
-      );
-    }
+    const out = await fetchYfCandles(symbol, fromSec);
+    if (out.ok && out.data.t.length > 0) return out.data;
+    warnings.push(`${symbol}: candles ${out.ok ? "empty" : out.kind}`);
     const p = offlineFallback > 0 ? offlineFallback : 100;
-    return { t: [inceptionSec, nowSec], c: [p, p] };
+    return { t: [inceptionSec, inceptionSec + 86400], c: [p, p] };
   }
 
   const benchmarkSeries = await loadCandles(bench, offlineBench);
   await sleep(FETCH_GAP_MS);
 
   const symbolSeries: Record<string, CandleSeries> = {};
-
-  // CASH: constant price of $1 — never fetched from Finnhub.
-  symbolSeries["CASH"] = { t: [inceptionSec, nowSec], c: [1, 1] };
+  symbolSeries["CASH"] = { t: [inceptionSec, inceptionSec + 86400], c: [1, 1] };
 
   for (const t of tickers) {
     const pos = inputs.find((p) => p.ticker.toUpperCase() === t);
@@ -83,28 +74,33 @@ export async function GET() {
     await sleep(FETCH_GAP_MS);
   }
 
+  // --- Quotes: Finnhub if key present, otherwise Yahoo Finance ---
   const latestQuotes: Record<string, number | null> = {};
-  for (const sym of [bench, ...tickers]) {
-    latestQuotes[sym] = null;
-  }
-  // CASH quote is always $1.
+  for (const sym of [bench, ...tickers]) latestQuotes[sym] = null;
   latestQuotes["CASH"] = 1;
 
-  if (finnhubConfigured()) {
-    for (const sym of [bench, ...tickers]) {
+  for (const sym of [bench, ...tickers]) {
+    let price: number | null = null;
+
+    if (finnhubConfigured()) {
       const q = await fetchQuote(sym);
-      const u = sym.toUpperCase();
-      if (q.ok) latestQuotes[u] = q.price;
-      else warnings.push(`${u} quote: ${q.kind}`);
+      if (q.ok) {
+        price = q.price;
+      } else {
+        // Finnhub quote failed — fall through to Yahoo Finance.
+        warnings.push(`${sym} finnhub: ${q.kind}`);
+      }
       await sleep(FETCH_GAP_MS);
     }
-  } else {
-    latestQuotes[bench] = offlineBench;
-    for (const t of tickers) {
-      const pos = inputs.find((p) => p.ticker.toUpperCase() === t);
-      latestQuotes[t] =
-        pos?.offlinePrice != null && pos.offlinePrice > 0 ? pos.offlinePrice : null;
+
+    if (price == null) {
+      const q = await fetchYfQuote(sym);
+      if (q.ok) price = q.price;
+      else warnings.push(`${sym} yf-quote: ${q.kind}`);
+      await sleep(FETCH_GAP_MS);
     }
+
+    latestQuotes[sym.toUpperCase()] = price;
   }
 
   const book = computeBook(
@@ -180,7 +176,6 @@ export async function GET() {
   const netExposure = currentNav !== 0 ? (netSum / currentNav) * 100 : 0;
 
   const priceSourceFor = (sym: string): BlotterRow["priceSource"] => {
-    if (!finnhubConfigured()) return "offline";
     const q = latestQuotes[sym.toUpperCase()];
     if (q != null && q > 0) return "live";
     return "close";
@@ -192,14 +187,10 @@ export async function GET() {
     const px = book.lastPrices[sym] ?? 0;
     const mv = sh * px;
     const unrealized = mv - p.allocationUsd;
-    const entryPrice =
-      sh !== 0 ? Math.abs(p.allocationUsd / sh) : px;
+    const entryPrice = sh !== 0 ? Math.abs(p.allocationUsd / sh) : px;
     const returnPct =
-      p.allocationUsd !== 0
-        ? (unrealized / Math.abs(p.allocationUsd)) * 100
-        : 0;
-    const contributionPct =
-      totalPnl !== 0 ? (unrealized / totalPnl) * 100 : 0;
+      p.allocationUsd !== 0 ? (unrealized / Math.abs(p.allocationUsd)) * 100 : 0;
+    const contributionPct = totalPnl !== 0 ? (unrealized / totalPnl) * 100 : 0;
     const weightPct = (Math.abs(p.allocationUsd) / startingNav) * 100;
 
     return {
@@ -228,13 +219,12 @@ export async function GET() {
     benchNav: book.benchNav[i] ?? 0,
   }));
 
-  // Derive overall data source from the equity positions (exclude CASH).
   const equityRows = blotter.filter((r) => r.ticker !== "CASH");
-  const overallSource: PortfolioApiResponse["dataSource"] = !finnhubConfigured()
-    ? "offline"
-    : equityRows.some((r) => r.priceSource === "live")
-      ? "live"
-      : "close";
+  const overallSource: PortfolioApiResponse["dataSource"] = equityRows.some(
+    (r) => r.priceSource === "live",
+  )
+    ? "live"
+    : "close";
 
   const body: PortfolioApiResponse = {
     ok: true,
